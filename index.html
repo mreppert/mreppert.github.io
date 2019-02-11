@@ -2,6 +2,37 @@
 layout: default
 title: Reppert Research Group
 ---
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+/* Create four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the four columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+</style>
+</head>
+
 <div class="blurb">
 	<h1>The Reppert Research Group</h1>
 	<p>Welcome to the Reppert research group. We're a curiosity-driven research group working at the interface between chemistry, biology, and physics. Our research typically focuses on the related questions:</p>
@@ -11,3 +42,26 @@ title: Reppert Research Group
 	</ul>
     <p>Specific research areas are described in more detail below.</p>
 </div><!-- /.blurb -->
+<body>
+
+<h2>Responsive Four Column Layout</h2>
+<p>Resize the browser window to see the responsive effect (the columns will stack on top of each other instead of floating next to each other, when the screen is less than 600px wide).</p>
+
+<div class="row">
+  <div class="column">
+    <h2>Photosynthetic Light Harvesting</h2>
+  </div>
+  <div class="column">
+    <h2>Optical and Infrared Spectroscopy</h2>
+  </div>
+  <div class="column">
+    <h2>Protein Structure and Dynamics</h2>
+  </div>
+  <div class="column">
+    <h2>Mixed Quantum/Classical Dynamics</h2>
+  </div>
+</div>
+
+</body>
+</html>
+
