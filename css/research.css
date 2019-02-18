@@ -63,6 +63,7 @@ ul#menu li {
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  min-width:250px;
 }
 
   
