@@ -4,7 +4,22 @@
 			<title>{{ page.title }}</title>
 			<!-- link to main stylesheet -->
 			<link rel="stylesheet" type="text/css" href="/css/main.css">
-			{% include mathjax.html %}
+			<script type="text/x-mathjax-config">
+  				MathJax.Hub.Config({
+		    		extensions: ["tex2jax.js"],
+    				jax: ["input/TeX", "output/HTML-CSS"],
+    				tex2jax: {
+      					inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      					displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      					processEscapes: true
+    				},
+    				"HTML-CSS": { fonts: ["TeX"] }
+  				});
+			</script>
+  
+			<script type="text/javascript"
+  				src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js">
+			</script>
 		</head>
 		<body>
 			<nav>
