@@ -30,8 +30,8 @@ h2 {
     margin-top: 50px;
 }
 p {
-    font-size: 1.5em;
-    line-height: 1.4em;
+    font-size: 1.2em;
+    line-height: 1.2em;
     color: #333;
 }
 footer {
@@ -47,6 +47,19 @@ ul.posts {
 ul.posts li {
     list-style: none;
 }
+
+.pubs {
+    font-size: 0.9em;
+    line-height: 1.0em;
+    margin-bottom: 0.5em
+}
+
+h2.pubs {
+    font-size: 1.1em;
+    font-family:'Helvetica', 'Arial', 'Sans-Serif';
+    text-align:center;
+}
+
 
 .dropdown {
   position: relative;

@@ -3,6 +3,7 @@ import numpy as np
 import re
 
 infile = sys.argv[1]
+flag = sys.argv[2]
 
 def extract_entry(key, rec):
     x = re.search(key + "[ ]*=[ ]*", rec)
@@ -62,6 +63,7 @@ def extract_entry(key, rec):
 
 RefList = []
 YearList = []
+FlagList = []
 
 Record = ""
 bcount = 0
@@ -82,6 +84,7 @@ with open(infile, "r") as fd:
             title = extract_entry("title", Record)
             ppg = extract_entry("pages", Record)
             year = extract_entry("year", Record)
+            misc = extract_entry("misc", Record)
 
             authlist = ""
             for auth in authors.split(' and '):
@@ -104,7 +107,7 @@ with open(infile, "r") as fd:
 
                 if len(doi)>0:
                      title = "<a href=\"https://doi.org/" + doi + "\">\"" + title + "\"</a>. "
-                entry = "<li>" + authlist + "; " + title + "<i>" + journal + "</i>, " + vol + ppg + " (" + year + ").</li>"
+                entry = "<li class=\"pubs\">" + authlist + "; " + title + "<i>" + journal + "</i>, " + vol + ppg + " (" + year + ").</li>"
 
             if "@incollection" in Record.lower():
                 btitle = extract_entry("booktitle", Record)
@@ -119,6 +122,7 @@ with open(infile, "r") as fd:
 
             RefList.append(entry)
             YearList.append(int(year))
+            FlagList.append(misc)
             Record = ""
 
 Years = np.array(YearList)
@@ -127,14 +131,20 @@ ndcs = np.argsort(-1*Years)
 
 
 lastyear = Years[ndcs[0]]
-print("<h2>" + str(lastyear) + "</h2>")
+print("<h2 class=\"pubs\">" + str(lastyear) + "</h2>")
 print()
 
 for n in range(0, len(Years)):
 
-    if Years[ndcs[n]] != lastyear:
-        lastyear = Years[ndcs[n]]
-        print()
-        print("<h2>" + str(lastyear) + "</h2>")
-        print()
-    print(RefList[ndcs[n]], "\n\n")
+    if (flag=="all") or (flag in FlagList[ndcs[n]]):
+
+        if Years[ndcs[n]] != lastyear:
+            lastyear = Years[ndcs[n]]
+            print()
+            print("<h2>" + str(lastyear) + "</h2>")
+            print()
+        print(RefList[ndcs[n]], "\n\n")
+
+print("</ol>")
+print("</body>")
+print("</html>")
