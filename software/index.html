@@ -11,12 +11,35 @@ title: Reppert Research Group
 #software {
   color:black;
 }
+
+img.screenshot {
+  width: 500px;
+  max-width: 100%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3em;
+  display: block;
+}
+
+
 </style>
 </head>
 
 <body>
   <h1>Software</h1>
-  <p>The group contributes to several open-source software packages.  
+  <p>The group has written and currently maintains several open-source software packages and online applications for scientific computing.<p>
+
+  <img class=screenshot src="/software/img/PigmentHunter.png">
+  <p><a href="https://nanohub.org/tools/pigmenthunter" style="color:blue"><b>PigmentHunter</b></a> is an open-source online app for structure-based spectroscopic calculations on chlorophyll-binding proteins. The app includes a graphical user interface accessed directly in a web browser (no download or install required), interactive structure viewing, automated molecular dynamics simulations, site-energy and inter-pigment coupling calculations, and excitonic methods for calculating the optical spectra of coupled pigments. The app is currently maintained by three group members: Mike Reppert, Safa Ahad, and Chientzu Lin. </p><br>
+
+
+  <img class=screenshot src="/software/img/AmideSpec.png">
+  <p><a href="https://nanohub.org/tools/amidespec" style="color:blue"><b>AmideSpec</b></a> is an open-source online app for structure-based Amide I spectroscopic calculations. The interface is similar to PigmentHunter but is currently used only for qualitative (educational) purposes. (The level of theory is too low for research-grade calculations.) Ultimately, AmideSpec will replace the g_amide and g_spec packages currently hosted on GitHub.</p><br>
+
+
+
+
   <p><strong><a href="https://github.com/mreppert/g_amide" style="color:blue">g_amide</a></strong> interfaces with the popular molecular dynamics package <a href="http://www.gromacs.org">gromacs</a> to predict Amide I vibrational frequencies for backbone carbonyl groups in peptides and proteins. 
   <p><strong><a href="https://github.com/mreppert/g_spec" style="color:blue">g_spec</a></strong> offers efficient numerical simulation of linear and 2D vibrational spectra. In conjunction with gromacs and g_amide, it offers a complete numerical library for converting protein structures into accurate Amide I vibrational spectra. 
   </body>
