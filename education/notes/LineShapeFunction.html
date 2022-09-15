@@ -131,11 +131,11 @@ to obtain
 
 \begin{align}
 R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} \bra{1; \chi_{0\nu}} e^{\frac{i}{\hbar} \hat H \tau} \ket{\chi_{1\nu'}} \bra{\chi_{1\nu'}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{1; \chi_{0\nu}} \\
-&= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} + \nu' \omega_o \right) \tau} e^{ - \frac{i}{\hbar} \nu \omega_o \tau} \braket{1; \chi_{0\nu}}{\chi_{1\nu'}} \braket{\chi_{1\nu'}}{1; \chi_{0\nu}} \\
-&= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ \frac{i}{\hbar} \left( \nu' - \nu\right) \omega_o \tau} \left | \braket{\chi_{0\nu}}{\chi_{1\nu'}} \right |^2  e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}.
+&= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} e^{ i \left( \omega_\text{el} + \nu' \omega_o \right) \tau} e^{ - i \nu \omega_o \tau} \braket{1; \chi_{0\nu}}{\chi_{1\nu'}} \braket{\chi_{1\nu'}}{1; \chi_{0\nu}} \\
+&= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{i \omega_\text{el} \tau} e^{ i \left( \nu' - \nu\right) \omega_o \tau} \left | \braket{\chi_{0\nu}}{\chi_{1\nu'}} \right |^2  e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}.
 \end{align}
 
-Since the absorption spectrum is the Fourier transform of this response function, each term in this expression (proportional to an oscillating exponential $e^{\frac{i}{\hbar} \left( \omega_\text{el} + \lambda_r \right) \tau} e^{ \frac{i}{\hbar} \left( \nu' - \nu\right) \omega_o \tau}$) will produce a peak in the absorption spectrum at the transition frequency $\omega_\text{el} + \frac{\lambda_r}{\hbar} + \left( \nu' - \nu \right) \omega_o$. Physically, this transition frequency represents a transition from the intial state $\ket{0; \chi_{0\nu}}$ in the electronic ground state to the excited state $\ket{1; \chi_{1\nu'}}$.
+Since the absorption spectrum is the Fourier transform of this response function, each term in this expression (proportional to an oscillating exponential $e^{i \omega_\text{el} \tau} e^{ i \left( \nu' - \nu\right) \omega_o \tau}$) will produce a peak in the absorption spectrum at the transition frequency $\omega_\text{el} + \left( \nu' - \nu \right) \omega_o$. Physically, this transition frequency represents a transition from the intial state $\ket{0; \chi_{0\nu}}$ in the electronic ground state to the excited state $\ket{1; \chi_{1\nu'}}$.
 
 The intensity of each such peak is proportional to the factor $\left | \braket{\chi_{0\nu}}{\chi_{1\nu'}} \right |^2  e^{-\beta \hbar \left( \nu + \frac{1}{2} \right )}$ which is a product of the *Boltzmann population* $ e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}$ and the (squared) **Franck-Condon factor** $ \left | \braket{\chi_{0\nu}}{\chi_{1\nu'}} \right | $. Physically, the Boltzmann term represents the probability for the system initially to be found in the $\nu^\text{th}$ vibrational state on the electronic ground state PES, while the Franck-Condon factor describes the *projection* of the this initial vibrational state onto the $\nu'^\text{th}$ vibrational state of the electronic excited-state PES.
 
@@ -176,19 +176,19 @@ Although Franck-Condon factors can be evaluated explicitly for small values of $
 To see this, plug in our new displacement-operator form for the Franck-Condon factors in the expression for $R^{(1)}(\tau)$:
 
 \begin{align}
-R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ \frac{i}{\hbar} \left( \nu' - \nu\right) \omega_o \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} \ket{\chi_{0\nu'}} \bra{\chi_{0\nu'}} e^{i \frac{\delta Q \hat P}{\hbar}} \ket{\chi_{0\nu}}  e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}.
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{ i \omega_\text{el} \tau} e^{ i \left( \nu' - \nu\right) \omega_o \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} \ket{\chi_{0\nu'}} \bra{\chi_{0\nu'}} e^{i \frac{\delta Q \hat P}{\hbar}} \ket{\chi_{0\nu}}  e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}.
 \end{align}
 
-Now take a step "backwards" from our earlier operations, replacing the oscillating exponentials $e^{ \frac{i}{\hbar} \nu' \omega_o \tau}$ and $e^{ - \frac{i}{\hbar} \nu \omega_o \tau}$ with applications of the corresponding operators to the states $\ket{\chi_{0\nu'}}$ and $\ket{\chi_{0\nu}}$:
+Now take a step "backwards" from our earlier operations, replacing the oscillating exponentials $e^{ i \nu' \omega_o \tau}$ and $e^{ - i \nu \omega_o \tau}$ with applications of the corresponding operators to the states $\ket{\chi_{0\nu'}}$ and $\ket{\chi_{0\nu}}$:
 
 \begin{align}
-R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{\chi_{0\nu'}} \bra{\chi_{0\nu'}} e^{i \frac{\delta Q \hat P}{\hbar}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{\chi_{0\nu}}  e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}.
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{ i \omega_\text{el} \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{\chi_{0\nu'}} \bra{\chi_{0\nu'}} e^{i \frac{\delta Q \hat P}{\hbar}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{\chi_{0\nu}}  e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}.
 \end{align}
 
 The identity operator $\sum_{\nu'} \ket{0;\chi_{0\nu'}}\bra{0; \chi_{0\nu'}}$ can now be eliminated from the expression:
 
 \begin{align}
-R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} e^{i \frac{\delta Q \hat P}{\hbar}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} .
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{ i \omega_\text{el} \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} e^{i \frac{\delta Q \hat P}{\hbar}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} .
 \end{align}
 
 The operator product $e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} e^{i \frac{\delta Q \hat P}{\hbar}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau}$ looks complicated but can be simplified substantially. Note that for any operators $\hat A$ and $\hat B$
@@ -202,7 +202,7 @@ e^{i \hat A} e^{ i \hat B} e^{-i \hat A} &= \sum_{n=0}^\infty e^{i \hat A} \frac
 In the middle line here, we have simply noted that because $e^{i \hat A} e^{- i \hat A} = \hat 1$, we can insert the quantity $e^{i \hat A} e^{- i \hat A}$ between each pair of $\hat B$ operators in the $\hat B^n$ term. Applied to our response function, this gives
 
 \begin{align}
-R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q \hat P(\tau) }{\hbar}} \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} ,
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{ i \omega_\text{el} \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q \hat P(\tau) }{\hbar}} \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} ,
 \end{align}
 
 where
@@ -250,7 +250,7 @@ satisfy the above differential relations for $\frac{d \hat Q(\tau)}{d\tau}$ and 
 Thus we obtain for the response function:
 
 \begin{align}
-R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q }{\hbar} \left( \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) } \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} .
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{ i \omega_\text{el} \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q }{\hbar} \left( \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) } \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} .
 \end{align}
 
 
@@ -325,7 +325,7 @@ $$e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q }{\hbar} \left( \hat 
 Our response function now reads
 
 \begin{align}
-R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ i s \sin(\omega_o \tau)} e^{ - \frac{|\alpha(\tau)|^2}{2}} \bra{\chi_{0\nu}} e^{\alpha^*(\tau) \hat A^\dagger} e^{ - \alpha(\tau) \hat A } \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} .
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{i \omega_\text{el} \tau} e^{ i s \sin(\omega_o \tau)} e^{ - \frac{|\alpha(\tau)|^2}{2}} \bra{\chi_{0\nu}} e^{\alpha^*(\tau) \hat A^\dagger} e^{ - \alpha(\tau) \hat A } \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} .
 \end{align}
 
 The matrix element can be expanded as a finite sum through a Taylor series in the exponentials:
@@ -394,9 +394,9 @@ $$ G(x,u) = \frac{1}{1-u} e^{-\frac{ux}{1-u}} . $$
 
 
 \begin{align}
-R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ i s \sin(\omega_o \tau)} e^{ - \frac{|\alpha(\tau)|^2}{2}} e^{-\frac{\beta \hbar \omega_o }{2} } \sum_{\nu} \left( e^{-\beta \hbar \omega_o } \right)^\nu L_\nu\left (\left | \alpha(\tau) \right|^2 \right) \\
-&= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ i s \sin(\omega_o \tau)}e^{ - \frac{|\alpha(\tau)|^2}{2}} \frac{e^{-\frac{\beta \hbar \omega_o }{2} }}{1 - e^{-\beta \hbar \omega_o } } e^{ - \frac{\left | \alpha(\tau) \right|^2 e^{-\beta \hbar \omega_o } }{1 - e^{-\beta \hbar \omega_o }}}\\
-&= \frac{2 \mu_{10}^2 }{\hbar} \Theta(\tau) \text{Im} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ i s \sin(\omega_o \tau)} e^{ - \frac{1}{2} |\alpha(\tau)|^2 \left( 1 + 2 \bar n(\omega_o) \right)}
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} e^{i \omega_\text{el} \tau} e^{ i s \sin(\omega_o \tau)} e^{ - \frac{|\alpha(\tau)|^2}{2}} e^{-\frac{\beta \hbar \omega_o }{2} } \sum_{\nu} \left( e^{-\beta \hbar \omega_o } \right)^\nu L_\nu\left (\left | \alpha(\tau) \right|^2 \right) \\
+&= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} e^{ i \omega_\text{el} \tau} e^{ i s \sin(\omega_o \tau)}e^{ - \frac{|\alpha(\tau)|^2}{2}} \frac{e^{-\frac{\beta \hbar \omega_o }{2} }}{1 - e^{-\beta \hbar \omega_o } } e^{ - \frac{\left | \alpha(\tau) \right|^2 e^{-\beta \hbar \omega_o } }{1 - e^{-\beta \hbar \omega_o }}}\\
+&= \frac{2 \mu_{10}^2 }{\hbar} \Theta(\tau) \text{Im} e^{i \omega_\text{el} \tau} e^{ i s \sin(\omega_o \tau)} e^{ - \frac{1}{2} |\alpha(\tau)|^2 \left( 1 + 2 \bar n(\omega_o) \right)}
 \end{align}
 
 
@@ -414,7 +414,7 @@ Expanding
 
 we can write the response function as 
 
-$$R^{(1)}(\tau) = \frac{2 \mu_{10}^2 }{\hbar} \Theta(\tau) \; \text{Im} \; \text{exp} \left [ \frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau + i s \sin(\omega_o \tau) - s \left( 1 - \cos\left( \omega_o \tau \right) \right) \left( 1 + 2 \bar n(\omega_o) \right) \right] $$
+$$R^{(1)}(\tau) = \frac{2 \mu_{10}^2 }{\hbar} \Theta(\tau) \; \text{Im} \; \text{exp} \left [ i \omega_\text{el} \tau + i s \sin(\omega_o \tau) - s \left( 1 - \cos\left( \omega_o \tau \right) \right) \left( 1 + 2 \bar n(\omega_o) \right) \right] $$
 
 or after some rearrangement of terms in the exponent
 
