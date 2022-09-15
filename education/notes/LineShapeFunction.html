@@ -11,6 +11,75 @@ title: Reppert Research Group
 <head>
 
 <style>
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ecd3b0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar {
+  position: Fixed;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  position: fixed; /* Fixed/sticky position */
+  left: 10px; /* Place the button 30px from the right */
+  bottom: 20px;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
  /* Style the buttons that are used to open and close the accordion panel */
 .accordion {
   background-color: #eee;
@@ -36,6 +105,12 @@ title: Reppert Research Group
   display: none;
   overflow: hidden;
 }
+
+.key {
+  font-size: 12pt;
+  margin: 1em 1em;
+}
+
 </style>
 
  
@@ -61,18 +136,62 @@ title: Reppert Research Group
 
 <body>
 
- <!--<img src="" title="this slowpoke moves" />-->
+$\newcommand{\bra}[1]{\left \langle #1 \right |}$
+$\newcommand{\ket}[1]{\left | #1 \right \rangle}$
+$\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+\left. #2 \vphantom{#1} \right>}$
 
+
+
+ <button class="openbtn" onclick="openNav()">Symbols Key</button>
+<div id="mySidebar" class="sidebar">
+  
+  <p class="key">$A(\omega)$: Absorption spectrum</p>
+
+  <p class="key">$G(\tau)$: Line shape function</p>
+
+  <p class="key">$G(u,x)$: Generating function for Laguerre polynomials</p>
+
+  <p class="key">$R^{(1)}(\tau)$: Linear response function</p>
+
+  <p class="key">$\hat \mu$: Dipole moment operator</p>
+
+  <p class="key">$\hat H$: Total Hamiltonian</p>
+
+  <p class="key">$\hat H_\text{S}$: System (electronic) Hamiltonian</p>
+
+  <p class="key">$\hat H_\text{B}$: Bath (vibrational) Hamiltonian</p>
+
+  <p class="key">$\hat H_\text{SB}$: System-Bath Interaction Hamiltonian</p>
+
+  <p class="key">$Z$: Total Partition Function</p>
+
+  <p class="key">$Z_\text{vib}$: Vibrational Partition Function</p>
+
+  <p class="key">$\Theta(\tau)$: Step function</p>
+
+  <p class="key">$\nu$: Vibrational quantum number</p>
+  
+  <p class="key">$\omega_o$: Vibrational frequency</p>
+
+  <p class="key">$\omega_\text{el}$: Electronic transition frequency</p>
+
+  <p class="key">$S$: Huang-Rhys factor</p>
+
+  <p class="key">$\braket{\chi_{0\nu}}{\chi_{1\nu'}}$: Franck-Condon factor</p>
+
+  <p class="key">$S$: Huang-Rhys factor</p>
+
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+</div>
+
+<div id="main">
 
  <h3 style="color:red"> WARNING: Page is under revision. Please watch for typos!<h3>
  
  <h2>What is an Absorption Line Shape function?</h2>
 
-
-$\newcommand{\bra}[1]{\left \langle #1 \right |}$
-$\newcommand{\ket}[1]{\left | #1 \right \rangle}$
-$\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
-\left. #2 \vphantom{#1} \right>}$
 
 
 Generically, an absorption line shape function is any function (usually of time) that, after a suitable transformation, yields, the absorption spectrum of an electromagnetic transition. Most commonly, the transformation involves a Fourier transform, e.g.,
@@ -552,6 +671,19 @@ A(\omega) &\propto \int_{0}^\infty d\tau  e^{i \omega \tau} e^{ - i \omega_\text
 \end{align}
 
 Comparing this last expression to the equation at the top of this page, we see that the $G(\tau)$ just derived is indeed the line shape function for the single-mode linear-coupling model. 
+
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
 
 </body>
 </html>
