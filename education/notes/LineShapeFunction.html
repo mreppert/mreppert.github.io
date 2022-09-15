@@ -1,0 +1,458 @@
+---
+layout: beta
+title: Reppert Research Group
+---
+
+  
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+  
+<head>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+  
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js">
+</script>
+</head>
+
+<body>
+
+ <!--<img src="" title="this slowpoke moves" />-->
+
+
+ <h3 style="color:red"> WARNING: Page is under revision. Please watch for typos!<h3>
+ 
+ <h2>What is an Absorption Line Shape function?</h2>
+
+
+$\newcommand{\bra}[1]{\left \langle #1 \right |}$
+$\newcommand{\ket}[1]{\left | #1 \right \rangle}$
+$\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+\left. #2 \vphantom{#1} \right>}$
+
+
+Generically, an absorption line shape function is any function (usually of time) that, after a suitable transformation, yields, the absorption spectrum of an electromagnetic transition. Most commonly, the transformation involves a Fourier transform, e.g.,
+
+$$ \alpha(\omega) \propto \int_{-\infty}^\infty e^{i \left ( \omega - \omega_\text{el} \right) \tau} e^{G(\tau) - G(0)} . $$
+
+In this expression $G(\tau)$ is called the *absorption line shape function*. In the text below, we'll work through an explicit expression for $G(\tau)$ for the linear coupling model often used to describe electronic transitions coupled to a vibrational environment.
+
+
+<h3> Linear Response Function </h3>
+
+According to response theory, the absorption spectrum of a quantum system is the Fourier transform of the response function
+
+$$ R^{(1)}(\tau) = \frac{2}{\hbar} \Theta(\tau) \text{Im} \left \langle \hat \mu(0) \hat \mu(\tau) \right \rangle,$$
+
+where
+
+$$\hat \mu(0) = \mu_{10} \left( \ket{1}\bra{0} + \ket{0}\bra{1} \right) $$
+
+is the dipole moment operator at time $\tau = 0$, and
+
+$$ \hat \mu(\tau) = e^{\frac{i}{\hbar} \hat H \tau} \hat \mu(0) e^{ - \frac{i}{\hbar} \hat H \tau} $$
+
+is the dipole moment operator at some later time $\tau$. The notation $ \left \langle ... \right \rangle$ indicates an average (trace) over the equilibrium density matrix $\rho_\text{eq}$, i.e.,
+
+$$ \left \langle ... \right \rangle = \sum_{n, \nu} \bra{n ; \chi_{n\nu}} \left( ... \right) \hat \rho_\text{eq} \ket{n; \chi_{n\nu}}. $$
+
+Here $\ket{n; \chi_{n\nu}}$ is the composite electronic-vibrational quantum state with electronic quantum number $n$ and vibrational quantum number $\nu$. $\chi_{n\nu}$ is the $\nu^\text{th}$ vibrational eigenstate of the $n^\text{th}$ electronic state PES. The equilibrium density matrix $\rho_\text{eq}$ is
+
+$$ \hat \rho_\text{eq} = \frac{e^{-\beta \hat H}}{Z},$$
+
+with $Z$ the partition function
+
+$$ Z = \sum_{n, \nu} \bra{n ; \chi_{n\nu}} e^{-\beta \hat H} \ket{n; \chi_{n\nu}} .$$
+
+
+
+<h3>Linear Electron-vibrational Coupling Model</h3>
+
+Under the linear coupling model, the Hamiltonian $\hat H$ is decomposed as
+
+$$ \hat H_\text{S} = \left( \hbar \omega_\text{el} + \lambda_r \right) \ket{1}\bra{1} $$
+
+$$ \hat H_\text{B} = \hat T_\text{vib} +  \frac{\omega_o^2}{2} Q^2 $$
+
+$$ \hat H_\text{SB} =  - \omega_o^2 \left ( \delta Q \right) Q \ket{1}\bra{1} .$$
+
+Since the thermal energy $k_\text{B} T = \frac{1}{\beta}$ is typically much lower than the electronic transition energy $\hbar \omega_\text{el}$, only the electronic ground state $\ket{0}\bra{0}$ has significant thermal population at equilibrium. Thus
+
+$$ \hat \rho_\text{eq} = \frac{e^{-\beta \hat H_\text{B} }}{Z_\text{vib}} \ket{0}\bra{0},$$
+
+with $Z_\text{vib}$ the vibrational partition function for the electronic ground state:
+
+\begin{align}
+Z_\text{vib} &= \sum_\nu \bra{\chi_{0\nu}} e^{-\beta \hat H_\text{B}} \ket{\chi_{0\nu}} = \sum_\nu e^{-\beta \hbar \omega_o \left (\nu + \frac{1}{2} \right) } .
+\end{align}
+
+Using the identity
+
+$$ \sum_{\nu=0}^\infty x^n = \frac{1}{1 - x}$$
+
+for $|x| < 1$, the sum can be evaluated directly as
+
+\begin{align}
+Z_\text{vib} &= e^{-\beta \frac{\hbar \omega_o }{2} } \sum_\nu \left( e^{-\beta \hbar \omega_o } \right)^\nu = \frac{e^{-\beta \frac{\hbar \omega_o }{2} }}{1 - e^{-\beta \hbar \omega_o }}
+\end{align}
+
+Inserting this definition for $\hat \rho_\text{eq}$, our response function becomes
+
+$$ R^{(1)}(\tau) = \frac{2}{\hbar} \Theta(\tau) \text{Im} \sum_{\nu} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} \bra{0; \chi_{0\nu}} \hat \mu(0) \hat \mu(\tau) \ket{0; \chi_{0\nu}} . $$
+
+And plugging in our definitions for the dipole moment operators and discarding terms proportional to $\braket{0}{1}$ and $\braket{1}{0}$, we obtain
+
+\begin{align}
+R^{(1)}(\tau) = \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} \braket{0; \chi_{0\nu}}{0}\bra{1} e^{\frac{i}{\hbar} \hat H \tau} \ket{1}\bra{0} e^{ - \frac{i}{\hbar} \hat H \tau}  \ket{0; \chi_{0\nu}} \\
+= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} \bra{1; \chi_{0\nu}} e^{\frac{i}{\hbar} \hat H \tau} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{1; \chi_{0\nu}} .
+\end{align}
+
+In this final expression, note that the mixed states $\ket{1; \chi_{0\nu}}$ involve the electronic *excited state* but vibrational wavefunctions $\chi_{0\nu}$ on the *electronic ground state* PES. Physically, this reflects the *Franck-condon principle* that electronic transitions happen much faster than nuclear coordinates can respond. Thus the initial vibrational wavefunction $\chi_{0\nu}$ on the $n=0$ PES is "instantaneously" (as far as the nuclei are concerned) thrust onto the electronic excited state PES.
+
+
+<h3>Franck-Condon Factors</h3>
+
+To evaluate this expression explicitly, we insert the identity operator $\hat 1$ in the form of a sum over all possible vibrational states on the electronic excited state PES
+
+$$ \hat 1 = \sum_{\nu'} \ket{\chi_{1\nu'}} \bra{\chi_{1\nu'}}$$
+
+to obtain
+
+\begin{align}
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} \bra{1; \chi_{0\nu}} e^{\frac{i}{\hbar} \hat H \tau} \ket{\chi_{1\nu'}} \bra{\chi_{1\nu'}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{1; \chi_{0\nu}} \\
+&= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} + \nu' \omega_o \right) \tau} e^{ - \frac{i}{\hbar} \nu \omega_o \tau} \braket{1; \chi_{0\nu}}{\chi_{1\nu'}} \braket{\chi_{1\nu'}}{1; \chi_{0\nu}} \\
+&= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ \frac{i}{\hbar} \left( \nu' - \nu\right) \omega_o \tau} \left | \braket{\chi_{0\nu}}{\chi_{1\nu'}} \right |^2  e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}.
+\end{align}
+
+Since the absorption spectrum is the Fourier transform of this response function, each term in this expression (proportional to an oscillating exponential $e^{\frac{i}{\hbar} \left( \omega_\text{el} + \lambda_r \right) \tau} e^{ \frac{i}{\hbar} \left( \nu' - \nu\right) \omega_o \tau}$) will produce a peak in the absorption spectrum at the transition frequency $\omega_\text{el} + \frac{\lambda_r}{\hbar} + \left( \nu' - \nu \right) \omega_o$. Physically, this transition frequency represents a transition from the intial state $\ket{0; \chi_{0\nu}}$ in the electronic ground state to the excited state $\ket{1; \chi_{1\nu'}}$.
+
+The intensity of each such peak is proportional to the factor $\left | \braket{\chi_{0\nu}}{\chi_{1\nu'}} \right |^2  e^{-\beta \hbar \left( \nu + \frac{1}{2} \right )}$ which is a product of the *Boltzmann population* $ e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}$ and the (squared) **Franck-Condon factor** $ \left | \braket{\chi_{0\nu}}{\chi_{1\nu'}} \right | $. Physically, the Boltzmann term represents the probability for the system initially to be found in the $\nu^\text{th}$ vibrational state on the electronic ground state PES, while the Franck-Condon factor describes the *projection* of the this initial vibrational state onto the $\nu'^\text{th}$ vibrational state of the electronic excited-state PES.
+
+<h3>The Displacement Operator</h3>
+
+
+
+To expand the Franck-Condon factors explicitly, it is useful to note that there is a simple operator relationship between the vibrational eigenfunctions $\ket{\chi_{0\nu}}$ of the ground-state PES and the eigenfunctions $\ket{\chi_{1\nu}}$ of the excited-state PES. Indeed, since the shape of the ground and excited-state potentials is identical, the only difference between $\ket{\chi_{0\nu}}$ and $\ket{\chi_{1\nu}}$ must be an overall displacement by the shift $\delta Q$ between the two potentials. Expressed as a function of the vibrational coordinate $Q$, this means that
+
+$$ \chi_{1\nu}(Q) = \chi_{0\nu}(Q - \delta Q). $$
+
+If we now expand $\chi_{0\nu}$ in a Taylor series around $Q = 0$ we obtain
+
+$$ \chi_{1\nu}(Q) = \chi_{0\nu}(Q - \delta Q) = \sum_{n=0}^\infty \frac{ \left( -\delta Q \right)^n}{n!} \left . \frac{d^n \chi_{0\nu}}{dQ^n} \right |_{Q = 0} . $$
+
+Recalling now the definition of the momentum operator
+
+$$ \hat P = - i \hbar \frac{d}{dQ} , $$
+
+this Taylor series can be written as
+
+$$ \chi_{1\nu}(Q) = \sum_{n=0}^\infty \frac{ \left( -\delta Q \right)^n}{n!} \left( \frac{\hat P}{-i\hbar} \right)^n \chi_{1\nu} = e^{-i \frac{\delta Q \hat P}{\hbar}} \chi_{0\nu}(Q). $$
+
+
+Thus, the operator exponential $e^{-i \frac{\delta Q \hat P}{\hbar}}$ serves as a *displacement operator* that shifts the vibrational state $\chi_{0\nu}$ by the amount $\delta Q$ along the $Q$ axis. Returning to bra-ket notation, we have
+
+$$\ket{\chi_{1\nu}} = e^{-i \frac{\delta Q \hat P}{\hbar}} \ket{\chi_{0\nu}} . $$
+
+
+The Franck-Condon factors can now be expressed as
+
+$$ \braket{\chi_{0\nu}}{\chi_{1\nu'}}  = \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} \ket{\chi_{0\nu'}} . $$
+
+<h3> The Line Shape Function</h3>
+
+Although Franck-Condon factors can be evaluated explicitly for small values of $\nu$ and $\nu'$, they become increasingly cumbersome as these indices increase. A much simpler closed form expression can be obtained, however, for the complete absorption line shape, including the sum over Franck-Condon factors.
+
+To see this, plug in our new displacement-operator form for the Franck-Condon factors in the expression for $R^{(1)}(\tau)$:
+
+\begin{align}
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ \frac{i}{\hbar} \left( \nu' - \nu\right) \omega_o \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} \ket{\chi_{0\nu'}} \bra{\chi_{0\nu'}} e^{i \frac{\delta Q \hat P}{\hbar}} \ket{\chi_{0\nu}}  e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}.
+\end{align}
+
+Now take a step "backwards" from our earlier operations, replacing the oscillating exponentials $e^{ \frac{i}{\hbar} \nu' \omega_o \tau}$ and $e^{ - \frac{i}{\hbar} \nu \omega_o \tau}$ with applications of the corresponding operators to the states $\ket{\chi_{0\nu'}}$ and $\ket{\chi_{0\nu}}$:
+
+\begin{align}
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu,\nu'} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{\chi_{0\nu'}} \bra{\chi_{0\nu'}} e^{i \frac{\delta Q \hat P}{\hbar}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{\chi_{0\nu}}  e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )}.
+\end{align}
+
+The identity operator $\sum_{\nu'} \ket{0;\chi_{0\nu'}}\bra{0; \chi_{0\nu'}}$ can now be eliminated from the expression:
+
+\begin{align}
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} e^{i \frac{\delta Q \hat P}{\hbar}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} .
+\end{align}
+
+The operator product $e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} e^{i \frac{\delta Q \hat P}{\hbar}} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau}$ looks complicated but can be simplified substantially. Note that for any operators $\hat A$ and $\hat B$
+
+\begin{align}
+e^{i \hat A} e^{ i \hat B} e^{-i \hat A} &= \sum_{n=0}^\infty e^{i \hat A} \frac{\left( i \hat B \right)^n}{n!} e^{ - i \hat A}\\
+&= \sum_{n=0}^\infty \frac{\left( i e^{i \hat A} \hat B e^{ - i \hat A} \right)^n}{n!} \\
+&= e^{ i e^{i \hat A} \hat B e^{ - i \hat A} }.
+\end{align}
+
+In the middle line here, we have simply noted that because $e^{i \hat A} e^{- i \hat A} = \hat 1$, we can insert the quantity $e^{i \hat A} e^{- i \hat A}$ between each pair of $\hat B$ operators in the $\hat B^n$ term. Applied to our response function, this gives
+
+\begin{align}
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q \hat P(\tau) }{\hbar}} \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} ,
+\end{align}
+
+where
+
+$$\hat P(\tau) \equiv e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} \hat P e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} . $$
+
+In the Heisenberg picture, $\hat P(\tau)$ is just the momentum operator of the bath propagated under the ground-state bath Hamiltonian $\hat H_\text{B}$. An explicit expression for $\hat P(\tau)$ can be obtained by noting that its time derivative satisfies
+
+\begin{align}
+\frac{d \hat P(\tau)}{d\tau} &= \left( \frac{d}{d\tau} e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} \right) \hat P e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} - e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} \hat P \left( \frac{d}{d\tau} e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} \right) \\
+&= \frac{i}{\hbar} e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} \left( \hat H_\text{B} \hat P - \hat P \hat H_\text{B} \right) e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} .
+\end{align}
+
+Using the canonical commutation relation $[ \hat Q, \hat P ] = i \hbar$, the commutator can be evaluated as
+
+\begin{align}
+\hat H_\text{B} \hat P - \hat P \hat H_\text{B} &= \frac{\omega_o^2}{2} \left[ \hat Q \left( \hat Q \hat P \right) - \hat P \hat Q^2 \right] \\
+&= \frac{\omega_o^2}{2} \left[ \hat Q \left( \hat P \hat Q + i \hbar \right) - \hat P \hat Q^2 \right] \\
+&= \frac{\omega_o^2}{2} \left[ \left( \hat Q \hat P \right) \hat Q + i \hbar \hat Q - \hat P \hat Q^2 \right] \\
+&= \frac{\omega_o^2}{2} \left[ \left( \hat P \hat Q + i \hbar \right) \hat Q + i \hbar \hat Q - \hat P \hat Q^2 \right] \\
+&= i \hbar \omega_o^2 \hat Q .
+\end{align}
+
+Thus
+
+$$ \frac{d \hat P(\tau)}{d\tau} = - \omega_o^2 \hat Q(\tau)$$
+
+where
+
+$$\hat Q(\tau) \equiv e^{ \frac{i}{\hbar} \hat H_\text{B} \tau} \hat Q e^{ - \frac{i}{\hbar} \hat H_\text{B} \tau} $$
+
+is just the vibrational position operator $\hat Q$ propagated under $\hat H_\text{B}$. A similar calculation shows that
+
+$$\frac{d \hat Q(\tau)}{d\tau} = \hat P(\tau) .$$
+
+But these two equations for $\frac{d \hat Q(\tau)}{d\tau}$ and $\frac{d \hat P(\tau)}{d\tau}$ are exactly the equations of motion for a classical harmonic oscillator, and they admit of the same solutions. Indeed, it is readily verified by direct differentiation that the equations
+
+\begin{align}
+\hat Q(\tau) &= \hat Q(0) \cos \left( \omega \tau \right) + \omega_o^{-1} \hat P(0) \sin(\omega_o \tau) \\
+\hat P(\tau) &= \hat P(0) \cos \left( \omega \tau \right) - \omega_o \hat Q(0) \sin(\omega_o \tau)
+\end{align}
+
+satisfy the above differential relations for $\frac{d \hat Q(\tau)}{d\tau}$ and $\frac{d \hat P(\tau)}{d\tau}$.
+
+Thus we obtain for the response function:
+
+\begin{align}
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} \bra{\chi_{0\nu}} e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q }{\hbar} \left( \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) } \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} .
+\end{align}
+
+
+<h3>The Zassenhaus Formula</h3>
+
+
+Our next task is to combine the exponential product $e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q }{\hbar} \left( \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) }$ into a single exponential.
+
+Fortunately, we have the Zassenhaus identity. This fundamental result tells us that the exponential of two operators can be expanded in an infinite product
+
+$$ e^{\hat A + \hat B} = e^{\hat A} e^{\hat B} e^{-\frac{1}{2} \left [ \hat A,   \hat B \right] } ..., $$
+
+where $\left [ \hat A, \hat B \right]$ is the commutator of the two operators $\hat A$ and $\hat B$, and the remaining terms (indicated by the "$...$") are exponentials in higher-order commutators such as  $\left [ \hat A, \left [ \hat A, \hat B \right] \right]$, $\left [ \hat B, \left [ \hat A, \hat B \right] \right]$, and so on.
+
+Importantly, if it so happens that the *commutator* $\left [ \hat A, \hat B \right]$ itself commutes with both $\hat A$ and $\hat B$, then these higher-order exponentials disappear. This is exactly the situation with our exponential since
+
+$$ \left [ \hat P , \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right] = - \omega_o \sin(\omega_o \tau) \left [ \hat P , \hat Q \right] = i \hbar \omega_o \sin(\omega_o \tau), $$
+
+which commutes with both $\hat P$ and $\hat Q$. Thus the Zassenhaus formula gives for our exponential
+
+$$e^{-i \frac{\delta Q \hat P}{\hbar} + i \frac{\delta Q }{\hbar} \left( \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) } = e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q }{\hbar} \left( \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) } e^{ - i s \sin(\omega_o \tau)}$$
+
+or
+
+$$e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q }{\hbar} \left( \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) } = e^{ i s \sin(\omega_o \tau)} e^{i \frac{\delta Q }{\hbar} \left( \hat P \left( \cos \left( \omega \tau \right) - 1 \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) } . $$
+
+
+
+<h3>Raising and Lowering Operators</h3>
+
+Finally, introduce the usual transformation to raising and lowering operators
+
+\begin{align}
+\hat A &= \frac{\omega_o \hat Q + i \hat P}{\sqrt{2 \hbar \omega_o }} \\
+\hat A^\dagger &= \frac{\omega_o \hat Q - i \hat P}{\sqrt{2 \hbar \omega_o }} ,
+\end{align}
+
+so that
+
+\begin{align}
+\hat Q &= \sqrt{\frac{\hbar}{2\omega_o}} \left( \hat A + \hat A^\dagger \right) \\
+\hat P &= -i \sqrt{\frac{\hbar \omega_o}{2}} \left( \hat A - \hat A^\dagger \right) .
+\end{align}
+
+In terms of $\hat A$ and $\hat A^\dagger$
+
+\begin{align}
+\hat P \left( \cos \left( \omega \tau \right) - 1 \right) - \omega_o \hat Q \sin(\omega_o \tau) &= -i \sqrt{\frac{\hbar \omega_o}{2}} \left( \hat A - \hat A^\dagger \right) \left( \cos \left( \omega \tau \right) - 1 \right) - \omega_o \sqrt{\frac{\hbar}{2\omega_o}} \left( \hat A + \hat A^\dagger \right) \sin(\omega_o \tau) \\
+&= - i \sqrt{\frac{\hbar \omega_o}{2}} \left [ \left ( 1 - e^{i \omega_o \tau} \right) \hat A^\dagger - \left ( 1 - e^{ - i \omega_o \tau} \right ) \hat A \right]
+\end{align}
+
+and thus
+
+$$e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q }{\hbar} \left( \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) } = e^{i s \sin(\omega_o \tau)} e^{\alpha^*(\tau) \hat A^\dagger - \alpha(\tau) \hat A } $$
+
+where
+
+$$ \alpha(\tau) = \delta Q \sqrt{\frac{\omega_o}{2 \hbar}} \left( 1 - e^{ - i \omega_o \tau} \right) . $$
+
+Finally, noting that
+
+$$ \left [ \hat A^\dagger, \hat A \right] = -1 , $$
+
+we again apply the Zassenhaus formula to obtain
+
+$$e^{-i \frac{\delta Q \hat P}{\hbar}} e^{i \frac{\delta Q }{\hbar} \left( \hat P\cos \left( \omega \tau \right) - \omega_o \hat Q \sin(\omega_o \tau) \right) } = e^{ i s \sin(\omega_o \tau)} e^{ - \frac{|\alpha(\tau)|^2}{2}} e^{\alpha^*(\tau) \hat A^\dagger} e^{ - \alpha(\tau) \hat A } . $$
+
+
+<h3>The Laguerre Polynomials</h3>
+
+
+Our response function now reads
+
+\begin{align}
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} \sum_{\nu} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ i s \sin(\omega_o \tau)} e^{ - \frac{|\alpha(\tau)|^2}{2}} \bra{\chi_{0\nu}} e^{\alpha^*(\tau) \hat A^\dagger} e^{ - \alpha(\tau) \hat A } \ket{\chi_{0\nu}} e^{-\beta \hbar \omega_o \left( \nu + \frac{1}{2} \right )} .
+\end{align}
+
+The matrix element can be expanded as a finite sum through a Taylor series in the exponentials:
+
+$$ \bra{\chi_{0\nu}} e^{\alpha^*(\tau) \hat A^\dagger} e^{ - \alpha^*(\tau) \hat A } \ket{\chi_{0\nu}} = \sum_{m=0}^\infty \sum_{n=0}^\infty \frac{\left( \alpha^* \right)^m \left( - \alpha(\tau) \right)^n }{m!n!} \bra{\chi_{0\nu}} \left( \hat A^\dagger \right)^m \hat A^n \ket{\chi_{0\nu}} . $$
+
+The standard rules
+
+\begin{align}
+\hat A \ket{\chi_{0\nu}} &= \sqrt{\nu} \ket{\chi_{0,\nu-1}}\\
+\bra{\chi_{0\nu}}\hat A^\dagger &= \sqrt{\nu} \bra{\chi_{0,\nu-1}}
+\end{align}
+
+for the raising and lowering operators imply that
+
+$$\bra{\chi_{0\nu}} \left( \hat A^\dagger \right) ^n \hat A ^m \ket{\chi_{0\nu}} = \left \{ \begin{matrix} \frac{\nu!}{(\nu - n)!} \delta_{mn}, && n \leq \nu\\ 0, && \text{otherwise} \end{matrix} \right ..$$
+
+For any value of $m \neq n$ will lead to inner products $\braket{\chi_{0,\nu-m}}{\chi_{0,\nu-n}}$ between orthogonal vibrational states, which necessarily vanish. Similarly, if $n > \nu$, the lowering operator will eventually operate on the state $\ket{\chi_{00}}$, producing zero. On the other hand, if $m = n$ and $n \leq \nu$, both bra and ket states will be lowered to a final index of $\nu - n$; the $n$ sequential application of $\hat A$ to the right will produce the prefactor $\sqrt{\nu(\nu-1) ... (\nu - n + 1)} = \sqrt{\frac{\nu!}{(\nu - n)!}}$, with an equal factor produced by applying $\hat A^\dagger$ to the left. Thus
+
+$$ \bra{\chi_{0\nu}} e^{\alpha^*(\tau) \hat A^\dagger} e^{ - \alpha^*(\tau) \hat A } \ket{\chi_{0\nu}} = \sum_{n=0}^\nu \left( -1 \right)^n \frac{ \left | \alpha (\tau) \right|^{2n} }{(n!)^2} \frac{\nu!}{(\nu - n)!} \equiv L_\nu\left (\left | \alpha(\tau) \right|^2 \right) , $$
+
+where in the final equality we have noted that the specified sum is exactly the *$n^\text{th}$ Laguerre polynomial* as a function of $\left | \alpha(\tau) \right|^2$.
+
+
+
+<h3>The Generating Function</h3>
+
+With this observation, we can evaluate the response function explicitly, making use of the *generating function* for the Laguerre polynomials:
+
+$$ \sum_{\nu=0}^\infty u^\nu L_\nu(x) = \frac{1}{1-u} e^{-\frac{ux}{1-u}} .$$
+
+This nontrivial relation can be justified as follows: note first that the Laguerre polynomials satisfy the differential recursion relation
+
+\begin{align}
+x L_\nu'(x) &= x \sum_{n=0}^\nu - n \frac{ \left( - x \right)^{n-1} }{(n!)^2} \frac{\nu!}{(\nu - n)!}\\
+&= \sum_{n=0}^\nu n \frac{ \left( - x \right)^{n} }{(n!)^2} \frac{\nu!}{(\nu - n)!} + \sum_{n=0}^\nu \nu \frac{ \left( - x \right)^{n} }{(n!)^2} \frac{\nu!}{(\nu - n)!} - \sum_{n=0}^\nu \nu \frac{ \left( - x \right)^{n} }{(n!)^2} \frac{\nu!}{(\nu - n)!} \\
+&= - \sum_{n=0}^\nu \left( \nu - n \right) \frac{ \left( - x \right)^{n} }{(n!)^2} \frac{\nu!}{(\nu - n)!} - \sum_{n=0}^\nu \nu \frac{ \left( - x \right)^{n} }{(n!)^2} \frac{\nu!}{(\nu - n)!} \\
+&= - \nu \sum_{n=0}^{\nu-1} \frac{ \left( - x \right)^{n} }{(n!)^2} \frac{\left( \nu - 1 \right) !}{(\nu - n - 1)!} + \nu \sum_{n=0}^\nu \frac{ \left( - x \right)^{n} }{(n!)^2} \frac{\nu!}{(\nu - n)!} \\
+&= - \nu L_{\nu-1}(x) + \nu L_\nu(x) .
+\end{align}
+
+Series of functions with differential recursion relations of this sort can often be characterized by a *generating function* of the form
+
+$$ G(x,u) = \sum_{\nu=0}^\infty u^\nu L_\nu(x) . $$
+
+If such a function exists (and can be identified explicitly), then the various terms $L_\nu(x)$ can be generated as the $\nu^\text{th}$ derivatives of $G(x,u)$ with respect to $u$ evaluated at $u = 1$ and scaled by $\nu!$. In this context, we already have explicit expressions for the $L_n(x)$, but we wish to find an explicit expression for $G(x,u)$ because it appears directly in our response function expression.
+
+To find $G(x,u)$, we use the differential recursion relation to note that, if $G(x,u)$ exists then it must satisfy the differential relation
+
+\begin{align}
+x \frac{\partial G}{\partial x} = \sum_{\nu=0}^\infty u^\nu x L_\nu'(x) &= \sum_{\nu=0}^\infty \nu u^\nu L_{\nu}(x) - \sum_{\nu=0}^\infty \nu u^\nu L_{\nu-1}(x) \\
+&= \sum_{\nu=0}^\infty \nu u^\nu L_{\nu}(x) - \sum_{\nu=0}^\infty (\nu+1) u^{\nu+1} L_\nu(x) \\
+&= \left( 1 - u \right) \sum_{\nu=0}^\infty \nu u^\nu L_{\nu}(x) - u G(x,u) \\
+&= \left( 1 - u \right) u \frac{\partial G}{\partial u} - u G(x,u) .
+\end{align}
+
+Thus $G(x,u)$ satisfies
+
+$$ G(x,u) = \left( 1 - u \right) \frac{\partial G}{\partial u} -  \frac{x}{u} \frac{\partial G}{\partial x} . $$
+
+It can now be verified by direct differentiation that this relationship is satisfied by
+
+$$ G(x,u) = \frac{1}{1-u} e^{-\frac{ux}{1-u}} . $$
+
+<h3> The Absorption Spectrum</h3>
+
+
+\begin{align}
+R^{(1)}(\tau) &= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ i s \sin(\omega_o \tau)} e^{ - \frac{|\alpha(\tau)|^2}{2}} e^{-\frac{\beta \hbar \omega_o }{2} } \sum_{\nu} \left( e^{-\beta \hbar \omega_o } \right)^\nu L_\nu\left (\left | \alpha(\tau) \right|^2 \right) \\
+&= \frac{2 \mu_{10}^2 }{\hbar} Z_\text{vib}^{-1} \Theta(\tau) \text{Im} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ i s \sin(\omega_o \tau)}e^{ - \frac{|\alpha(\tau)|^2}{2}} \frac{e^{-\frac{\beta \hbar \omega_o }{2} }}{1 - e^{-\beta \hbar \omega_o } } e^{ - \frac{\left | \alpha(\tau) \right|^2 e^{-\beta \hbar \omega_o } }{1 - e^{-\beta \hbar \omega_o }}}\\
+&= \frac{2 \mu_{10}^2 }{\hbar} \Theta(\tau) \text{Im} e^{\frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau} e^{ i s \sin(\omega_o \tau)} e^{ - \frac{1}{2} |\alpha(\tau)|^2 \left( 1 + 2 \bar n(\omega_o) \right)}
+\end{align}
+
+
+The function $\bar n(\omega)$ is termed the *thermal occupation number*:
+
+$$ \bar n(\omega) = \frac{1}{e^{\beta \hbar \omega_o} - 1} .$$
+
+
+Expanding 
+
+\begin{align}
+\| \alpha(\tau) \|^2 &= \frac{\omega_o^2 \left( \delta Q\right)^2}{2 \hbar \omega_o} \left( 1 - e^{ - i \omega_o \tau} \right) \left( 1 - e^{ + i \omega_o \tau} \right) \\
+&= 2 s \left( 1 - \cos\left( \omega_o \tau \right) \right) 
+\end{align}
+
+we can write the response function as 
+
+$$R^{(1)}(\tau) = \frac{2 \mu_{10}^2 }{\hbar} \Theta(\tau) \; \text{Im} \; \text{exp} \left [ \frac{i}{\hbar} \left( \omega_\text{el} + \frac{\lambda_r}{\hbar} \right) \tau + i s \sin(\omega_o \tau) - s \left( 1 - \cos\left( \omega_o \tau \right) \right) \left( 1 + 2 \bar n(\omega_o) \right) \right] $$
+
+or after some rearrangement of terms in the exponent
+
+
+$$R^{(1)}(\tau) = \frac{2 \mu_{10}^2 }{\hbar} \Theta(\tau) \; \text{Im} \; e^{i \omega_\text{el} \tau + G^*(\tau) - G(0)} $$
+
+where 
+
+$$G(\tau) \equiv s \left( - i \omega_o \tau + e^{-i \omega_o \tau} \left( \bar n(\omega_o) + 1 \right) + e^{ i \omega_o \tau} \bar n(\omega_o) \right) . $$
+
+The convention to define $G(\tau)$ in this way (so that the response function depends on its complex conjugate $G^*(\tau)$) will be made clear shortly. Note that $G(0)$ is real-valued, so that $G^*(0)= G(0)$. 
+
+
+
+<h3>The Lineshape Function</h3>
+
+
+Finally, the absorption spectrum is related to the linear response function by 
+
+$$ A(\omega) \propto \text{Im} \; \int_{-\infty}^\infty d\tau e^{i \omega \tau} R^{(1)}(\tau) . $$
+
+Plugging in our expression for $R^{(1)}(\tau)$ we get
+
+
+\begin{align}
+A(\omega) &\propto \text{Im} \; \frac{1}{2i} \int_{0}^\infty d\tau  e^{i \omega \tau} \left( e^{i \omega_\text{el} \tau + G^*(\tau) - G(0)} - e^{ - i \omega_\text{el} \tau + G(\tau) - G(0)}\right)\\
+&= \left( \frac{1}{2i} \right) \left( \frac{1}{2i} \right) \int_{0}^\infty d\tau  e^{i \omega \tau} \left( e^{i \omega_\text{el} \tau + G^*(\tau) - G(0)} - e^{ - i \omega_\text{el} \tau + G(\tau) - G(0)}\right)\\
+&- \left( \frac{1}{2i} \right) \left( \frac{1}{-2i} \right) \int_{0}^\infty d\tau  e^{- i \omega \tau} \left( e^{-i \omega_\text{el} \tau + G(\tau) - G(0)} - e^{ i \omega_\text{el} \tau + G^*(\tau) - G(0)}\right)\\
+\end{align}
+
+In the positive-frequency range ($\omega > 0$), only the terms proportional to $e^{\pm i \left( \omega - \omega_\text{el} \right) \tau}$ will be nonzero, so we can simplify to 
+
+\begin{align}
+A(\omega) &\propto \int_{0}^\infty d\tau  e^{i \omega \tau} e^{ - i \omega_\text{el} \tau + G(\tau) - G(0)} + \int_{0}^\infty d\tau  e^{- i \omega \tau} e^{ i \omega_\text{el} \tau + G^*(\tau) - G(0)}\\
+&\propto \text{Re} \; \int_{0}^\infty d\tau \; e^{i \left ( \omega - \omega_\text{el} \right) \tau} e^{ G(\tau) - G(0)} .
+\end{align}
+
+Comparing this last expression to the equation at the top of this page, we see that the $G(\tau)$ just derived is indeed the line shape function for the single-mode linear-coupling model. 
+
+</body>
+</html>
