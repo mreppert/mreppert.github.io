@@ -1,0 +1,541 @@
+---
+layout: beta
+title: Reppert Research Group
+---
+
+  
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<head>
+
+<style>
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ecd3b0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar {
+  position: Fixed;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  position: fixed; /* Fixed/sticky position */
+  left: 10px; /* Place the button 30px from the right */
+  bottom: 20px;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+ /* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 10px 18px;
+  background-color: #cde2f9;
+  display: none;
+  overflow: hidden;
+}
+
+.key {
+  font-size: 12pt;
+  margin: 1em 1em;
+}
+
+</style>
+
+ 
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+      processEscapes: true
+    },
+    "HTML-CSS": { fonts: ["TeX"] }
+  });
+</script>
+  
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js">
+</script>
+
+
+</head>
+
+<body>
+
+$\newcommand{\bra}[1]{\left \langle #1 \right |}$
+$\newcommand{\ket}[1]{\left | #1 \right \rangle}$
+$\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+\left. #2 \vphantom{#1} \right>}$
+
+
+
+<button class="openbtn" onclick="openNav()">Symbols Key</button>
+<div id="mySidebar" class="sidebar">
+
+  <p>$\tilde f(\omega)$: Fourier transform of $f(x)$</p>
+  
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+</div>
+
+<div id="main">
+
+ <h3 style="color:red"> WARNING: Page is under revision. Please watch for typos!<h3>
+ 
+ <h2>What is a Fourier Transform?</h2>
+
+
+A Fourier transform is a mathematical operation that decomposes a function (or signal) into an infinite sum or integral of sine and cosine curves.
+
+ <h3>A Motivating Example</h3>
+
+The key concept behind the Fourier transform is that any signal on a fixed interval (say $-\pi$ to $\pi$) can be decomposed into a sum of sine and cosine terms whose periods are multiples of the interval length. This may at first seem surprising but isn't difficult to rationalize. Take, for example, the square wave $sq(x)$ shown as a thick black line in each frame of the figure below. At first, this sharp "signal" bears little resemblance to a sinusoidal curve. But if we "squint" a bit, we might notice that it has the same period as the function $\cos(x)$. Thus we could take as a first approximation (see frame (a)):
+
+$$ \text{sq}(x) \approx a_1 \cos(x), $$
+
+where $a_1$ is a constant chosen to match the amplitudes of the two signals. (More on how to choose these coefficients later.)
+
+
+<img src="img/fourier_example_square.png" alt="Fourier decomposition of a square wave" style="float: right; margin:10px" >
+
+But we can do better than this. The biggest deficiency of our $\cos(x)$ approximation is that it misses the "sharpness" of the edges of the square wave: essentially, it makes the transition from "low" to "high" (and back again) too slowly. We can improve that agreement by adding in a component that rises more steeply on the left side and falls more slowly on the right. But $\cos(3 x)$ does exactly this: its higher frequency compared to $\cos(x)$ means that it rises and falls more steeply (in sync with the square wave) and even decreases the amplitude at the peak of the square wave, which $\cos(x)$ overestimates. Frame (b) of the figure illustrates in blue the "best-fit" approximation of the square wave as
+
+$$ \text{sq}(x) \approx a_1 \cos(x) + a_3 \cos( 3 x) . $$
+
+And we can keep going. As we continue to add higher-frequency cosine waves, the faster oscillations of each component allow us to match with greater and greater precision the sharp features of the square wave. In fact, if we were to continue this process indefinitely, we would end up with an *exact* representation
+
+$$ \text{sq}(x) = a_1 \cos(x) + a_3 \cos(3x) + a_5 \cos(5x) + ... $$
+
+
+
+<h3>Fourier's Theorem</h3>
+
+This observation is the key to *Fourier's Theorem* (the theoretical basis for Fourier transforms): that any function on the interval $(-\pi,\pi)$ can be represented by a series of sine and cosine signals with integer frequencies. For an arbitrary function $f(x)$, Fourier's theorem asserts that
+
+$$ f(x) = \sum_{n=0}^\infty a_n \cos(n x) + \sum_{n=0}^\infty b_n \sin(nx) , $$
+
+where $a_n$ and $b_n$ are unique coefficients that depend on the function $f(x)$. An expansion of this form is called a *Fourier series*. Relative to our square wave example, the expansion here is more general. The $\cos(nx)$ terms treat functions that are *symmetric* on the $(-\pi,\pi)$ interval (like our square wave), while the $\sin(nx)$ terms can be used to describe functions that are *asymmetric* on the interval. Since all functions can be decomposed into symmetric and asymmetric components, the fact that the Fourier series can describe both means that it can handle *any* function.
+
+
+<h3>How do we determine the coefficients?</h3>
+
+Our statement of Fourier's theorem leaves open an obvious question: How do we know which $a_n$ and $b_n$ coefficients to use to represent a given function?
+
+Actually, the answer isn't too hard to find. The answer is that 
+
+$$a_m = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \cos(mx) \, dx . $$
+$$b_m = \frac{1}{\pi} \int_{-\pi}^{\pi} f(x) \sin(mx) \, dx . $$
+This relation gives us a simple way to calculate each coefficient $a_n$ needed to express *any* function $f(x)$ on the interval $(-\pi,\pi)$.
+
+<button class="accordion"><b>Prove it</b></button>
+<div class="panel">
+The key observation is simply that all of the "basis" functions $\cos(nx)$ and $\sin(nx)$ are *orthogonal* to each other, i.e., that
+
+$$ \int_{-\pi}^{\pi} \cos(nx) \sin(mx) dx = 0$$
+
+for *any* values of $m$ and $n$ and that
+
+$$ \int_{-\pi}^{\pi} \cos(nx) \cos(mx) dx = 0$$
+
+and
+
+$$ \int_{-\pi}^{\pi} \sin(nx) \sin(mx) dx = 0$$
+
+unless $m = n$. How does this help?
+
+Well, look what happens if we evaluate the integral
+
+$$ \int_{-\pi}^{\pi} f(x) \cos(m x) dx $$
+
+using our Fourier series representation of $f(x)$. Because the sine and cosine basis functions are orthogonal, the only integral in the series
+
+$$ \int_{-\pi}^{\pi} \cos(mx) f(x) dx = \sum_{n=0}^\infty a_n \int_{-\pi}^{\pi} \cos(m x) \cos(n x) dx + \sum_{n=0}^\infty b_n \int_{-\pi}^{\pi} \cos(m x) \sin(nx) dx $$
+
+that can be nonzero is the cosine integral where $m = n$. Thus
+
+$$ \int_{-\pi}^{\pi} \cos(mx) f(x) dx = a_m \int_{-\pi}^{\pi} \cos^2(m x) dx = \pi a_m $$
+
+Dividing through both sides of the equation by $\pi$ we get the desired expression for $a_m$. An equivalent calculation using $\sin(mx)$ in place of $\cos(mx)$ gives the result for $b_m$. 
+
+</div>
+
+
+<h3>Euler's Formula</h3>
+
+In most applications, Fourier series are used not in the sine and cosine forms just described but in an exponential form that makes use of Euler's formula for complex exponentials:
+
+$$ e^{ix} = \cos(x) + i \sin(x) . $$
+
+This formula gives a simple way to express $\sin(x)$ and $\cos(x)$ - and thus also our Fourier series - in terms of complex exponentials. Explicitly, we find that
+
+
+$$ f(x) = \sum_{n=0}^\infty \alpha_n^{(+)} e^{inx} + \sum_{n=1}^\infty \alpha_n^{(-)} e^{-inx} $$
+
+where
+
+$$ \alpha_m^{(\mp)} \equiv \frac{1}{2\pi} \int_{0}^{2\pi} e^{-i m x} f(x) \, dx . $$
+
+Note that indexing in the second sum starts at $n=1$ since the $n=0$ component is the same for $e^{i n x}$ and for $e^{-inx}$. 
+
+<button class="accordion"><b>Let's see the details</b></button>
+<div class="panel">
+
+Adding Euler's expresions for $e^{ix}$ and $e^{-ix}$ we get
+
+$$ e^{ix} + e^{-ix} = 2 \cos(x)$$
+
+or simply 
+
+$$ \cos(x) = \frac{e^{ix} + e^{-ix}}{2} . $$
+
+Similarly, taking the difference of $e^{ix}$ and $e^{-ix}$ produces
+
+$$ \sin(x) = \frac{e^{ix} - e^{-ix}}{2} . $$
+
+If we use these relations to express the $\cos(nx)$ and $\sin(nx)$ terms in our Fourier series, we find that
+
+$$ f(x) = \sum_{n=0}^\infty \frac{a_n}{2} \left( e^{inx} + e^{-inx} \right) + \sum_{n=0}^\infty \frac{b_n}{2i} \frac{e^{inx} - e^{-inx}}{2}, $$
+
+or after regrouping the $e^{inx}$ and $e^{-inx}$ terms
+
+$$ f(x) = \sum_{n=0}^\infty \frac{a_n -i b_n}{2} e^{inx} + \sum_{n=0}^\infty \frac{a_n + i b_n}{2} e^{-inx}. $$
+
+If we take $\alpha_n^{(+)} \equiv \frac{a_n - i b_n}{2}$ and $\alpha_n^{(-)} \equiv \frac{a_n + i b_n}{2}$ to be two new coefficients, we can write our Fourier series as 
+
+$$ f(x) = \sum_{n=0}^\infty \alpha_n^{(+)} e^{inx} + \sum_{n=1}^\infty \alpha_n^{(-)} e^{-inx} . $$
+
+From our existing definitions for $a_n$ and $b_n$, we find that 
+
+\begin{align}
+\alpha_m^{(+)} &= \frac{1}{2 \pi} \int_{-\pi}^{\pi} f(x) \left( \cos(mx) - i \sin(mx) \right) \, dx \\
+&= \frac{1}{2\pi} \int_{0}^{2\pi} e^{-i m x} f(x) \, dx 
+\end{align}
+and 
+\begin{align}
+\alpha_m^{(-)} &= \frac{1}{2 \pi} \int_{-\pi}^{\pi} f(x) \left( \cos(mx) + i \sin(mx) \right) \, dx \\
+&= \frac{1}{2\pi} \int_{0}^{2\pi} e^{-i m x} f(x) \, dx . 
+\end{align}
+
+</div>
+
+Note that because Fourier's theorem applies equally well to the real and imaginary parts of any function, as long as the coefficients are allowed to be complex numbers, the decomposition works equally well for real and complex functions. 
+
+
+
+<h3>Fourier Series on Finite Intervals</h3>
+
+Our treatment so far is essentially complete for functions on the interval $(-\pi, \pi)$. But what about functions on other intervals? What if we want to consider functions on the entire real line $(-\infty,\infty)$?
+
+Let's do the easy part first: functions on an arbitrary interval $\left(-\frac{L}{2}, \frac{L}{2}\right)$. We can handle this case quite easily from our existing results by just scaling the $x$ axis. A function $f(x)$ on the interval $\left(-\frac{L}{2},\frac{L}{2} \right)$, can be represented via the Fourier series
+
+$$ f(x) = g\left( \frac{2\pi}{L} x \right) = \sum_{n=0}^\infty \alpha_n^{(+)} e^{i 2 \pi \frac{n}{L}x} + \sum_{n=0}^\infty \alpha_n^{(-)} e^{-2 \pi i \frac{n}{L} x} $$
+
+using the coefficients
+
+$$ \alpha_m^{(\mp)} = \frac{1}{L} \int_{-\frac{L}{2}}^{\frac{L}{2}} e^{\pm i 2\pi \frac{m}{L} x} f(x) \, dx. $$
+
+
+
+<button class="accordion"><b>Prove it.</b></button>
+<div class="panel">
+Given a function $f(x)$ on the interval $\left( -\frac{L}{2}, \frac{L}{2} \right)$, make the change of variables
+
+$$ u = \frac{2\pi}{L} x . $$
+
+The function $g(u) = f\left( \frac{L}{2\pi} u \right)$ is then defined on the interval $u = (-\pi, \pi)$ and can be decomposed under Fourier's theorm with coefficients
+
+\begin{align}
+\alpha_m^{(\mp)} &= \frac{1}{2\pi} \int_{-\pi}^{\pi} e^{\pm i m u} g(u) \, du\\
+&= \frac{1}{L} \int_{-\frac{L}{2}}^{\frac{L}{2}} e^{\pm i m \frac{2\pi}{L} x} f(x) \, dx .
+\end{align}
+
+Now because
+
+$$ g(u) = \sum_{n=0}^\infty \alpha_n^{(+)} e^{i n u} + \sum_{n=0}^\infty \alpha_n^{(-)} e^{- i nu} ,$$
+
+$f(x)$ can be represented as
+
+$$ f(x) = g\left( \frac{2\pi}{L} x \right) = \sum_{n=0}^\infty \alpha_n^{(+)} e^{i 2 \pi \frac{n}{L}x} + \sum_{n=0}^\infty \alpha_n^{(-)} e^{-2 \pi i \frac{n}{L} x} $$
+
+using the coefficients
+
+$$ \alpha_m^{(\mp)} = \frac{1}{L} \int_{-\frac{L}{2}}^{\frac{L}{2}} e^{\pm i 2\pi \frac{m}{L} x} f(x) \, dx. $$
+
+</div>
+
+
+<h3>Fourier Transforms</h3>
+
+Finally, we're ready to think about extending this representation to functions on *the entire real line* as opposed to just the finite interval $\left( -\frac{L}{2}, \frac{L}{2}\right)$. To accomplish this all we really have to do is take the limit $L \to \infty$. But there is one conceptual hurdle we need to tackle first: to shift from thinking about our Fourier components as a function of how many oscillations $n$ they make on the interval $\left( -\frac{L}{2}, \frac{L}{2}\right)$ to how many oscillations they make *per unit distance* on the real line.
+
+The difference between these two perspectives is illustrated in the figure above. The black line in each frame represents some function $f(x)$ we wish to represent in a Fourier series. The red dashed curve represents the function $\cos(2\pi x)$, which appears to contribute substantially to $f(x)$. The blue shading in each frame indicates three different intervals of length $3$, $6$ and $9$ over which we might choose to represent the function.
+
+<img src="img/fourier_example_interval.png" alt="Fourier component illustrated over different intervals on the real line" style="float: right; margin:10px" >
+
+Now, in the top frame, $\cos(2 \pi x)$ completes 2 cycles over the interval $(-1,1)$; in terms of our Fourier series, this corresponds to the coefficient $a_2$. In the second frame, $\cos(2\pi x)$ completes 4 cycles on the interval $(-2,2)$, corresponding to coefficient $a_4$, and in the third frame it completes 6 cycles in the interval $(-3,3)$, corresponding to $a_6$.
+
+So we see that, depending on the interval over which we study $f(x)$, the component $\cos(2\pi x)$ may appear as the $n = 2$ Fourier component, the $n = 4$ component, or the $n = 6$ component. As a function of the independent variable $x$, however, $\cos(2\pi x)$ obviously oscillates with a fixed *frequency* of $ 2\pi . $
+
+The point of all this is that if we want to extend our box length $L \to \infty$, we can't simply take the limit of the Fourier coefficients $a_n$ or $\alpha_{n}^{(\pm)}$ as $L \to \infty$, since $\alpha_{n}^{(\pm)}$ represents a very different signal over the interval $(-1,1)$ than it does over the interval $(-3,3)$ or $(-1000, 1000)$. Instead, we want an expression for whichever coefficient corresponds to an oscillation frequency of, e.g., $2\pi$ or $3\pi$ or $n\pi$.
+
+With this in mind, let's think again about our Fourier series in terms of the complex exponentials $e^{\pm i 2 \pi \frac{n}{L} x}$. The oscillation *frequency* of each such term as a function of $x$ is
+
+$$ \omega = \pm 2 \pi \frac{n}{L} . $$
+
+The $L \to \infty$ analog to our expansion coefficients $\alpha_n^{(\pm)}$ is thus not the quantity $\lim_{L \to \infty} \alpha_n^{(\pm)}$ but the quantity
+
+$$ \tilde f(\omega) \equiv \lim_{L \to \infty} \int_{-\frac{L}{2}}^\frac{L}{2} e^{-i \omega x} f(x) dx = \int_{-\infty}^\infty e^{-i \omega x} f(x) dx $$
+
+where we have swapped out the discrete frequency $ \pm 2 \pi \frac{n}{L}$ (which depends on both $n$ and $L$) with a continuous frequency variable $\omega$. This new quantity $\tilde f(\omega)$ is called the **Fourier transform** of $f(x)$ and tells us how much contribution the oscillating component $e^{i\omega x}$ makes to our total function $f(x)$. In fact, if we let $\omega$ take on both positive and negative values, this single definition accounts for both the $e^{i 2\pi \frac{n}{L} x}$ terms *and* the $e^{ - i 2\pi \frac{n}{L} x}$ terms in our Fourier sum.
+
+Since we now have a continuous index $\omega$ denoting our frequency components, we can no longer represent $f(x)$ as a discrete *sum* but as a continuous *integral* over the various Fourier components:
+
+$$ f(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{i \omega x} \tilde f(\omega) \, d\omega . $$
+
+The factor of $\frac{1}{2\pi}$ appears as a normalization constant during the passage of of the discrete sum to the continuous integral.
+
+
+
+
+<h3>Discrete Fourier Transforms</h3>
+
+When we perform Fourier transforms numerically, we must necessarily sample our signal function $f(x)$ at a set of discrete data points, since the computer can't store the values for $f(x)$ sampled at *all* of the infinite number of possible data points along the $x$ axis. Typically we'll sample $f(x)$ at some constant step size $\Delta x$ along some interval which, for convenience, we'll take to be $\left ( 0, L \right)$. (To sample on any other interval, we can just shift the function $f(x)$ along the $x$ axis). Let's say we sample at $N$ evenly-spaced data points along the interval; then our step size must be
+
+$$ \Delta x = \frac{L}{N} $$
+
+and our sampling points are $x_0$, $x_2 = \Delta x$, ..., $x_{N-1} = \left( N - 1 \right) \Delta x $. Note that the *last* data point is 
+
+$$x_{N-1} = \frac{N-1}{N} L = L - \Delta x, $$
+
+so we never actually sample the right end-point of the interval. On the computer we then store a *vector* of data points whose elements are
+
+$$ f_n = f(x_n) . $$
+
+The <b>Discrete Fourier Transform</b> (DFT) of this vector  $f_n$ is 
+
+$$ F_k \equiv \sum_{n=0}^{N-1} e^{- i 2\pi k \frac{n}{N} } f_n . $$
+
+From it, the original vector $f_n$ can be calculated as 
+
+$$ f_n = \frac{1}{N} \sum_{k=0}^{N-1} e^{i 2\pi n \frac{k}{N} } F_k . $$
+
+The $k^\text{th}$ Fourier component $e^{i 2\pi \frac{k}{N} n}$ in this expansion corresponds to a frequency of $\omega_k = k \frac{1}{L}$ or, equivalently, to a frequency of $\omega_k = - (N - k) \frac{1}{L}$. The frequency step size for the new Fourier axis is therefore
+
+$$ \Delta \omega = \frac{1}{L} = \frac{1}{N\Delta x} . $$
+
+Thus the frequency resolution of the Fourier transform improves as we sample the original function $f(x)$ over longer intervals on the $x$ axis.  
+
+
+
+<button class="accordion"><b>More details, please.</b></button>
+<div class="panel">
+
+From the finitely sampled $f(x_n)$, we can't calculate the *exact* Fourier coefficients
+
+$$ \alpha_k^{(\mp)} = \frac{1}{L} \int_{0}^{L} e^{\pm i 2\pi \frac{k}{L} x} f(x) \, dx. $$
+
+because we only have access to $f(x)$ at the finite sampling points $x_0, x_1, ..., x_N$. (Note that, because we chose our sampling interval to be $(0,L)$ instead of $\left (-\frac{L}{2}, \frac{L}{2} \right)$, we've had to update our integration limits; everything else from our earlier development of Fourier sums remains intact.) The best we can do is turn our continuous integral into a discrete sum
+
+$$ f_k^{(\pm)} =  \frac{1}{L} \sum_{n=0}^{N-1} e^{\pm i 2\pi \frac{k}{L} x_n} f(x_n) \Delta x $$
+
+where we sample $f(x)$ at our discrete points $x_n$ and the different $dx$ becomes the step size $\Delta x$. (Formally, this is the left Riemann sum approximation to the integral.) Pulling the constant factor of $\Delta x$ outside the sum and noting that $x_n = n \Delta x$ and $N = \frac{\Delta x}{L}$, this can be written
+
+$$ f_k^{(\pm)} =  \frac{1}{N} \sum_{n=0}^{N-1} e^{\pm i 2\pi k \frac{n}{N} } f_n . $$
+
+
+<h3>Overcounting</h3>
+
+Now, let's stop for a moment to think about which values of $k$ make sense to calculate here. For our continuously sampled function $f(x)$ the component index $k$ extended from $0$ to $\infty$. But in our finite representation, this poses a problem. Consider that because $e^{i 2\pi n} = 1$ for any integer $n$:
+
+$$ e^{i 2 \pi k \frac{n}{N}} = e^{i 2 \pi \frac{N}{N} n } e^{i 2 \pi k \frac{n}{N}} = e^{i 2 \pi (N + k) \frac{n}{N}} $$
+
+for any integer $k$. What this means is that the $k^\text{th}$ Fourier coefficient $f_k$ is *identical* to the $(N+k)^\text{th}$ coefficient - and to the $(2N+k)^\text{th}$ coefficient and the $(3N+k)^\text{th}$ coefficient and so on. Clearly, then, it's not meaningful to let $k$ take on values outside the range $[0, N-1]$, since anything outside this range is equivalent to one of the coefficients $f_{0}^{(\pm)},...,f_{N-1}^{(\pm)}$.
+
+But notice that if we calculate both sets of coefficients $f_k^{(+)}$ and $f_k^{(-)}$ we actually obtain $2N$ coefficients from a vector $f_n$ that originally contained only $N$ components. This seems a bit suspicious, since it would be more intuitive for $N$ data points in real space to transform into only $N$ data points in Fourier space. Are we still somehow overcounting?
+
+Indeed, we are. Because
+
+$$e^{+ i 2\pi k \frac{n}{N} } = e^{- i 2\pi N \frac{n}{N}} e^{+ i 2\pi k \frac{n}{N}} = e^{+ i 2\pi \left( k - N \right) \frac{n}{N}}$$
+
+we find that for any value $0 \leq k < N$
+
+\begin{align}
+f_k^{(-)} &=  \frac{1}{N} \sum_{n=0}^{N-1} e^{+ i 2\pi k \frac{n}{N} } f_n \\
+&= \frac{1}{N} \sum_{n=0}^{N-1} e^{- i 2\pi \left( N - k \right) \frac{n}{N}} f_n \\
+&= f_{N-k}^{(+)} .
+\end{align}
+
+Thus, in fact, *either* the vector $f_k^{(-)}$ *or* the vector $f_k^{(+)}$ is sufficient to completely characterize our discretely sampled function $f_n$. Calculating both vectors is redundant.
+
+
+<h3> Computational Conventions </h3>
+
+Because of this equivalence of the $f_k^{(+)}$ and $f_k^{(-)}$ vectors, different computational implementations of Fourier transformations often choose different conventions on how to define discrete Fourier transforms. Similarly, the factor of $\frac{1}{N}$ can be included in the definition (as above) or reserved for when we transform data *back* from the Fourier representation to real space.
+
+Perhaps the most common is to choose the $f_k^{(+)}$ series with*out* the $\frac{1}{N}$ prefactor so that the **Discrete Fourier Transform** (DFT) $F_k$ is defined as
+
+$$ F_k \equiv \sum_{n=0}^{N-1} e^{- i 2\pi k \frac{n}{N} } f_n . $$
+
+The original function $f_n$ can be recovered via the **Inverse Discrete Fourier Transform**
+
+$$ f_n = \frac{1}{N} \sum_{k=0}^{N-1} e^{i 2\pi n \frac{k}{N} } F_k , $$
+
+in direct analogy to our earlier Fourier sum representation. To see that this does indeed recover the original function, insert the definition of $F_k$ to observe that
+
+\begin{align}
+\frac{1}{N} \sum_{k=0}^{N-1} e^{i 2\pi n \frac{k}{N} } F_k &= \frac{1}{N} \sum_{k=0}^{N-1} e^{i 2\pi n \frac{k}{N} } \left( \sum_{m=0}^{N-1} e^{- i 2\pi k \frac{m}{N} } f_m \right) \\
+&= \frac{1}{N} \sum_{m=0}^{N-1} f_m \sum_{k=0}^{N-1} e^{i 2\pi ( n - m )\frac{k}{N} } .
+\end{align}
+
+Now, when $m \neq n$, the exponent $e^{i 2\pi ( n - m )\frac{k}{N}}$ completes an integer number of complete cycles as $k$ ranges from $0$ to $N-1$, so that the sum across $k$ sum vanishes exactly. Conversely, when $m = n$, the exponential is just $e^{i 2\pi (0) \frac{k}{N} } = 1$. Thus out of the sum over $m$ only the terms with $m = n$ survive, and
+\begin{align}
+\frac{1}{N} \sum_{m=0}^{N-1} f_m \sum_{k=0}^{N-1} e^{i 2\pi ( n - m )\frac{k}{N} } &= \frac{1}{N} f_n \sum_{k=0}^{N-1} 1 = f_n.
+\end{align}
+
+Thus the inverse DFT does indeed recapture the original discretely sampled function $f_n$.
+
+
+
+<h3>Frequency Axes in DFTs </h3>
+
+This DFT gives us a numerical method for converting a vector $f_n$ (corresponding to the discretely-sampled function $f(x)$) to a Fourier vector $F_k$ whose entries represent Fourier coefficients of in $e^{ i 2\pi kx}$ decomposition of $f(x)$. But it may not be immediately obvious what frequency axis this $F_k$ vector is sampled over.
+
+To see this, recall that component $F_k$ of the Fourier vector corresponds in the inverse transform to the oscillating exponential $e^{i 2\pi k \frac{n}{N}}$. In terms of our discretely sampled data points $x_n = n \Delta x = L \frac{n}{N}$ the $k^\text{th}$ Fourier component becomes
+
+$$ e^{i 2\pi k \frac{n}{N}} = e^{i 2\pi k \frac{x_n}{L}} = e^{i 2\pi \frac{k}{L} x_n} . $$
+
+As a function of the continuous variable $x$, this is exactly the discrete-sampling representation of the continuous function $e^{i 2\pi \frac{k}{L} x}$, which oscillates with frequency
+
+$$w_k = 2\pi \frac{k}{L} .$$
+
+Thus, the $F_0$ coefficient in our Fourier vector corresponds to the zero-frequency component $e^{i 2\pi \cdot 0} = 1$, while the coefficients $F_1$, $F_2$, etc., corrrespond to the Fourier basis functions $e^{i 2\pi \left( \frac{1}{L} \right) x } $, $e^{i 2\pi \left( \frac{2}{L} \right) x}$, $e^{i 2\pi \left( \frac{3}{L} \right) x}$, etc. The *units* on the DFT frequency axis thus should be just the inverse of the units on the $x$ axis, and the spacing between the frequency sampling points is
+
+$$ \Delta \omega = \frac{2 \pi }{L}$$
+
+or in linear frequency
+
+$$ \Delta \nu = \frac{1}{L} . $$
+
+Note, however, that because
+
+$$f_k^{(-)} = f_{N-k}^{(+)} , $$
+
+it is equally valid to think of the $k^\text{th}$ Fourier component as corresponding to the *positive* frequency $ k \Delta \omega$ or to a *negative* frequency $ - \left( N - k \right) \Delta \omega $. For this reason, DFT frequency axes are often represented as
+
+$$\omega_k = \left \{ \begin{matrix} k \Delta \omega, && k < \frac{N}{2} \\ - (N-k) \Delta \omega && k \geq \frac{N}{2} . \end{matrix} \right. $$
+
+This, for example, is the sort of frequency axis produced by the NumPy command np.fft.fftfreq(N) as illustrated in the figure below.<br>
+
+<img src="img/fourier_example_axis.png" alt="Fourier axis generated by NumPy.fft.fftfreq(N)" style="margin:10px; display: block; margin-left: auto; margin-right:auto; width=50%">
+
+
+
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+
+
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
+
+</body>
+</html>

@@ -592,23 +592,6 @@ It can now be verified by direct differentiation that this relationship is satis
 $$ G(x,u) = \frac{1}{1-u} e^{-\frac{ux}{1-u}} . $$
 
 </div>
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  });
-}
-</script>
-
 
 
 Setting $u = e^{-\beta \hbar \omega_o}$ and $x = \left | \alpha(\tau) \right |^2$ and plugging this relation into our response function, we obtain
@@ -673,6 +656,25 @@ A(\omega) &\propto \int_{0}^\infty d\tau  e^{i \omega \tau} e^{ - i \omega_\text
 Comparing this last expression to the equation at the top of this page, we see that the $G(\tau)$ just derived is indeed the line shape function for the single-mode linear-coupling model. 
 
 </div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+
+
 <script>
 function openNav() {
   document.getElementById("mySidebar").style.width = "250px";
