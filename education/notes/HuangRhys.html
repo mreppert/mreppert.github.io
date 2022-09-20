@@ -6,8 +6,114 @@ title: Reppert Research Group
   
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
+
 <head>
+
+<style>
+
+.sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ecd3b0;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar {
+  position: Fixed;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+}
+
+.closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  position: fixed; /* Fixed/sticky position */
+  left: 10px; /* Place the button 30px from the right */
+  bottom: 20px;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+  .sidebar {padding-top: 15px;}
+  .sidebar a {font-size: 18px;}
+}
+
+ /* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 10px 18px;
+  background-color: #cde2f9;
+  display: none;
+  overflow: hidden;
+}
+
+.key {
+  font-size: 12pt;
+  margin: 1em 1em;
+}
+
+</style>
+
+ 
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     extensions: ["tex2jax.js"],
@@ -24,12 +130,48 @@ title: Reppert Research Group
 <script type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js">
 </script>
+
+
 </head>
 
 <body>
 
- <!--<img src="" title="this slowpoke moves" />-->
+$\newcommand{\bra}[1]{\left \langle #1 \right |}$
+$\newcommand{\ket}[1]{\left | #1 \right \rangle}$
+$\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
+\left. #2 \vphantom{#1} \right>}$
 
+
+<button class="openbtn" onclick="openNav()">Symbols Key</button>
+<div id="mySidebar" class="sidebar">
+
+  <p class="key">$S$ or $s$: Huang-Rhys factor</p>
+  <p class="key">$\lambda_r$: Reorganization energy</p>
+  <p class="key">$\hbar$: Planck's constant (over $2\pi$)</p>
+  <p class="key">$\bar\nu_o$: Vibrational frequency in cm$^{-1}$</p>
+  <p class="key">$\nu_o$: Vibrational frequency in Hz$</p>
+  <p class="key">$\omega_o$: Vibrational angular frequency in Hz$</p>
+  <p class="key">$\omega_\text{el}$: Electronic transition angular frequency in Hz$</p>
+
+  <p class="key">$V_0(\hat x)$: Potential energy for vibrational coordinate $\hat x$ in the ground electronic state.</p>
+  <p class="key">$V_1(\hat x)$: Potential energy for vibrational coordinate $\hat x$ in the excited electronic state.</p>
+  <p class="key">$\ket{0}$: Electronic ground state</p>
+  <p class="key">$\ket{1}$: Electronic excited state state</p>
+  <p class="key">$M$: Oscillator reduced mass</p>
+  <p class="key">$\hat x$: Oscillator coordinate (real space)</p>
+  <p class="key">$\hat Q = \sqrt{M} \hat x$: Oscillator coordinate (mass-weighted)</p>
+  <p class="key">$\delta x$: Shift between ground and excited-state vibrational potentials (real-space coordinates)</p>
+  <p class="key">$\delta x$: Shift between ground and excited-state vibrational potentials (mass-weighted coordinates)</p>
+  <p class="key">$\hat T_\text{vib}$: Vibrational kinetic energy operator</p>
+  <p class="key">$\hat T_\text{vib}$: Vibrational kinetic energy operator</p>
+
+
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+
+
+</div>
+
+<div id="main">
 
  <h3 style="color:red"> WARNING: Page is under revision. Please watch for typos!<h3>
  
@@ -144,6 +286,37 @@ Equivalently, $s$ is sometimes described as an indicator for the horizontal shif
 $$ s \equiv \frac{\omega_o}{2\hbar} \left( \delta Q \right)^2 = \frac{M \omega_o}{2\hbar} \left( \delta x \right)^2 . $$
 
 Whereas $\delta x$ and $\delta Q$ may be either positive or negative, $s$ is always positive.
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.display === "block") {
+      panel.style.display = "none";
+    } else {
+      panel.style.display = "block";
+    }
+  });
+}
+</script>
+
+
+</div>
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
 
 </body>
 </html>
