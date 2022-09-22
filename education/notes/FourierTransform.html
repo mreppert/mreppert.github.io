@@ -142,16 +142,35 @@ $\newcommand{\braket}[2]{\left< #1 \vphantom{#2} \right|
 \left. #2 \vphantom{#1} \right>}$
 
 
-<!--
 <button class="openbtn" onclick="openNav()">Symbols Key</button>
 <div id="mySidebar" class="sidebar">
 
-  <p>$\tilde f(\omega)$: Fourier transform of $f(x)$</p>
+  <p class="key">DFT: discrete Fourier transform</p>
+
+  <p class="key">$f(x)$: original function$</p>
+
+  <p class="key">$\tilde f(\omega)$: Fourier transform of $f(x)$</p>
+
+  <p class="key">$sq(x)$: square wave$</p>
+
+  <p class="key">$a_n$: expansion coefficient for $\cos(nx)$ in Fourier sine/cosine series</p>
+
+  <p class="key">$b_n$: expansion coefficient for $\sin(nx)$ in Fourier sine/cosine series</p>
   
+  <p class="key">$\alpha_n$: expansion coefficient for $e^{inx}$ in Fourier exponential series</p>
+
+  <p class="key">$L$: interval length for Fourier transform on finite interval</p>
+  
+  <p class="key">$\Delta x$: step size for finite sampling of $f(x)$</p>
+
+  <p class="key">$\Delta \omega$: frequency step size in discrete Fourier transform of finitely sampled function $f(x)$</p>
+
+  <p class="key">$k$: frequency-domain summation index in discrete Foureir transform</p>
+
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 
+
 </div>
--->
 
 <div id="main">
 
@@ -421,9 +440,13 @@ From it, the original vector $f_n$ can be calculated as
 
 $$ f_n = \frac{1}{N} \sum_{k=0}^{N-1} e^{i 2\pi n \frac{k}{N} } F_k . $$
 
-The $k^\text{th}$ Fourier component $e^{i 2\pi \frac{k}{N} n}$ in this expansion corresponds to a frequency of $\omega_k = k \frac{1}{L}$ or, equivalently, to a frequency of $\omega_k = - (N - k) \frac{1}{L}$. The frequency step size for the new Fourier axis is therefore
+The $k^\text{th}$ Fourier component $e^{i 2\pi \frac{k}{N} n}$ in this expansion corresponds to a frequency of $\omega_k = k \frac{2\pi}{L}$ or, equivalently, to a frequency of $\omega_k = - (N - k) \frac{2\pi}{L}$. The frequency step size for the new Fourier axis is therefore
 
-$$ \Delta \omega = \frac{1}{L} = \frac{1}{N\Delta x} . $$
+$$ \Delta \omega = \frac{2\pi}{L} = \frac{2\pi}{N\Delta x}  $$
+
+or in terms of linear frequency 
+
+$$ \Delta \nu = \frac{1}{L} = \frac{1}{N\Delta x} . $$
 
 Thus the frequency resolution of the Fourier transform improves as we sample the original function $f(x)$ over longer intervals on the $x$ axis.  
 
