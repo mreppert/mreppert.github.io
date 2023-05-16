@@ -12,7 +12,7 @@ do
 	for dat in `sed -n 's/\(.*\)href="#\(.*\)?">\(.*\)/\2/p' $infile`; 
 	do
 		text=`echo $dat | sed 's/-/ /g'`"?"
-		echo "<p><a href=\"/pyfaqs/$infile/#$dat?\">$text</a></p>" >> index.html
+		echo "<p><a href=\"/pyfaqs/$infile#$dat?\">$text</a></p>" >> index.html
 	done
 done
 echo "</html>" >> index.html
