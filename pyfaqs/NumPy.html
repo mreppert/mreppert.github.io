@@ -11782,7 +11782,7 @@ div#notebook {
 <ul>
 <li><code>np.array(List)</code> creates a NumPy array from a Python list. The size and shape of the array depend on the list entries. </li>
 <li><code>np.eye(N)</code> creates an NxN identity matrix</li>
-<li><code>np.random.rand((M,N))</code> creates an MxN matrix of random numbers between 0 and 1</li>
+<li><code>np.random.random((M,N))</code> creates an MxN matrix of random numbers between 0 and 1</li>
 </ul>
 <p>NumPy also includes many built-in commands to manipulate arrays in matrix-like ways. For example:</p>
 <ul>
@@ -11812,7 +11812,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -11848,22 +11848,150 @@ div#notebook {
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Using scientific notation:
-[[  2.19e+01   6.59e+00   9.36e+02   2.52e+00]
- [  6.39e+03   2.52e+01   3.88e+01   3.04e+00]
- [  4.84e+01   3.30e+02   6.46e+01   1.19e+04]
- [  1.18e+03   2.79e+02   9.57e+01   1.28e+03]]
+[[  2.21e+02   4.93e+02   5.36e+00   2.30e+00]
+ [  4.27e+00   1.22e+02   2.71e+03   1.79e+00]
+ [  8.65e+01   9.00e+02   2.57e+03   7.43e+02]
+ [  1.42e+01   3.84e+01   4.47e+00   6.59e+03]]
 
 Suppressing scientific notation:
-[[    21.87      6.59    936.33      2.52]
- [  6385.78     25.15     38.75      3.04]
- [    48.37    329.86     64.6   11864.96]
- [  1184.06    278.65     95.73   1284.91]]
+[[  220.95   493.18     5.36     2.3 ]
+ [    4.27   122.    2705.98     1.79]
+ [   86.47   900.48  2569.42   742.66]
+ [   14.18    38.41     4.47  6588.18]]
 
 Lowering the print precision:
-[[    21.87      6.59    936.33      2.52]
- [  6385.78     25.15     38.75      3.04]
- [    48.37    329.86     64.6   11864.96]
- [  1184.06    278.65     95.73   1284.91]]
+[[  220.95   493.18     5.36     2.3 ]
+ [    4.27   122.    2705.98     1.79]
+ [   86.47   900.48  2569.42   742.66]
+ [   14.18    38.41     4.47  6588.18]]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="How-does-NumPy-array-indexing-work?">How does NumPy array indexing work?<a class="anchor-link" href="#How-does-NumPy-array-indexing-work?">&#182;</a></h2><p>Complete documentation on NumPy indexing can be found at the NumPy project page: <a href="https://numpy.org/doc/stable/user/basics.indexing.html">https://numpy.org/doc/stable/user/basics.indexing.html</a>.</p>
+<p>Here we only give a few examples that we find useful. The examples here are for 1D arrays, but indexing works similarly for 2D (or 3D or 4D...) arrays, with commas separating the different dimensions. E.g. <code>A[0,0]</code> corresponds to the zeroth row and zeroth column of the array <code>A</code>, <code>A[0,1]</code> corresponds to the zeroth row and 1th column, etc.</p>
+<h4 id="Note-that-array-indexing-in-NumPy-starts-at-0,-not-at-1!">Note that array indexing in NumPy starts at 0, not at 1!<a class="anchor-link" href="#Note-that-array-indexing-in-NumPy-starts-at-0,-not-at-1!">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="c1"># A contains numbers 0 through 9</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># This is a vector of length 10, i.e., shape is (10,).</span>
+<span class="c1"># Note that (to NumPy) this is different from a matrix </span>
+<span class="c1"># of dimension (10,1), i.e., a 10x1 matrix. </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;np.shape(A):&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">A</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Backwards array:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First element:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Last element&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Penultimate element:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Even elements&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Odd elements&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Every thid element&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">3</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First 4 elements:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;First 2 even elements:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Odd elements backwards:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">[::</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>A:
+[0 1 2 3 4 5 6 7 8 9]
+
+np.shape(A):
+(10,)
+
+Backwards array:
+[9 8 7 6 5 4 3 2 1 0]
+
+First element:
+0
+
+Last element
+9
+
+Penultimate element:
+8
+
+Even elements
+[0 2 4 6 8]
+
+Odd elements
+[1 3 5 7 9]
+
+Every thid element
+[0 3 6 9]
+
+First 4 elements:
+[0 1 2 3]
+
+First 2 even elements:
+[0 2]
+
+Odd elements backwards:
+[9 7 5 3 1]
 
 </pre>
 </div>
@@ -11885,11 +12013,25 @@ Lowering the print precision:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]])</span>
 <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">]])</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;B:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A*B: &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="o">*</span><span class="n">B</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;A@B: &#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="nd">@B</span><span class="p">)</span>
@@ -11912,7 +12054,19 @@ Lowering the print precision:
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>A@B: 
+<pre>A:
+[[1 2]
+ [3 4]]
+
+B:
+[[5 6]
+ [7 8]]
+
+A*B: 
+[[ 5 12]
+ [21 32]]
+
+A@B: 
 [[19 22]
  [43 50]]
 
@@ -11940,7 +12094,7 @@ B@A:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Original matrix</span>
@@ -11975,8 +12129,8 @@ B@A:
  [ 1.5 -0.5]]
 
 A@Ainv:
-[[  1.00000000e+00   1.11022302e-16]
- [  0.00000000e+00   1.00000000e+00]]
+[[ 1.  0.]
+ [ 0.  1.]]
 </pre>
 </div>
 </div>
@@ -11997,7 +12151,7 @@ A@Ainv:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">]])</span>
@@ -12040,15 +12194,264 @@ A@Ainv:
  [ 50  10]]
 
 Eigenvalues:
-[-57.20153254  47.20153254]
+[-57.2  47.2]
 
 Eigenvectors:
-[[-0.80229293 -0.59693053]
- [ 0.59693053 -0.80229293]]
+[[-0.8 -0.6]
+ [ 0.6 -0.8]]
 
 Diagonalization:
-[[ -5.72015325e+01   3.55271368e-15]
- [  0.00000000e+00   4.72015325e+01]]
+[[-57.2   0. ]
+ [  0.   47.2]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="How-do-I-print-NumPy-arrays-to-a-text-file?">How do I print NumPy arrays to a text file?<a class="anchor-link" href="#How-do-I-print-NumPy-arrays-to-a-text-file?">&#182;</a></h2><p>The easiest way to do this is probably using <code>np.savetxt()</code>. The <code>delimiter</code> flag can be used to indicate a customized string to separate the numeric data. (The default is a single white space.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="n">dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;default.txt&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;tabs.txt&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;commas.txt&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[ 0.6   0.02  0.31  0.89  0.49]
+ [ 0.88  0.01  0.14  0.06  0.47]
+ [ 0.35  0.07  0.59  0.97  0.06]
+ [ 0.17  0.51  0.87  0.4   0.62]
+ [ 0.28  0.98  0.72  0.72  0.31]
+ [ 0.32  0.1   0.31  0.7   0.04]
+ [ 1.    0.6   0.95  0.19  0.64]
+ [ 0.28  0.04  0.08  0.25  0.48]
+ [ 0.31  0.77  0.22  0.67  0.55]
+ [ 0.7   0.86  0.99  0.88  0.02]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="How-do-I-control-output-precision-with-np.savetxt()?">How do I control output precision with <code>np.savetxt()</code>?<a class="anchor-link" href="#How-do-I-control-output-precision-with-np.savetxt()?">&#182;</a></h2><p>Use the optional <code>fmt</code> flag. There are many options here, but as two most important examples:</p>
+<ul>
+<li>To keep 5 decimal places, <strong>with</strong> scientific notation, set <code>fmt='%.5e'</code>. </li>
+<li>To keep 5 decimal places, <strong>without</strong> scientific notation, set <code>fmt='%.5f'</code>. 
+You can replace <code>5</code> here with however many decimal points you wish to preserve. </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="n">dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># One decimal point, no scientific notation:</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;precision1.txt&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Five decimal points, no scientific notation:</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;precision5.txt&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.5f</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># Five decimal points, with scientific notation:</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;precision5sci.txt&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.5e</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="How-do-I-load-tab-delimited-data-from-a-text-file-into-a-NumPy-array?">How do I load tab-delimited data from a text file into a NumPy array?<a class="anchor-link" href="#How-do-I-load-tab-delimited-data-from-a-text-file-into-a-NumPy-array?">&#182;</a></h2><p>There are several ways to do this, but the easiest is probably <code>np.loadtxt()</code>. Note that the text file must contain <em>only</em> numeric data, with the same number of data points in each line of the file (so that it can be loaded into a rectangular array).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="c1"># Set print precision to 10 decimals</span>
+<span class="n">np</span><span class="o">.</span><span class="n">set_printoptions</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="n">dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Original data:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># Save the data with two different precisions:</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;precision1.txt&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.1f</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;precision5.txt&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.5f</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">dat1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;precision1.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From 1-decimal precision file:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+
+<span class="c1"># From 5-decimal precision file:</span>
+<span class="n">dat5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;precision5.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From 5-decimal precision file:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Original data:
+[[ 0.9364172975  0.4736766478  0.3954997522  0.2295961172  0.5051098805]
+ [ 0.095599225   0.7531380077  0.4123492077  0.8539660432  0.2580521103]
+ [ 0.7192928198  0.4902830369  0.9877565876  0.2414540092  0.6751003157]
+ [ 0.0967878487  0.8047707196  0.0339582619  0.5756287273  0.4723487975]
+ [ 0.9758369182  0.840540963   0.3166136108  0.5956060309  0.5684113764]
+ [ 0.7213089001  0.0400370272  0.1958339652  0.8556262046  0.8616145738]
+ [ 0.0971277627  0.9474437754  0.4641328625  0.4234104172  0.4627724561]
+ [ 0.1742203323  0.8376111942  0.1049220714  0.3396354636  0.6953630936]
+ [ 0.8158853383  0.8313302568  0.0834473049  0.2550371527  0.1720891566]
+ [ 0.9344406263  0.8608303234  0.1139978681  0.6795782679  0.5558488537]]
+
+From 1-decimal precision file:
+[[ 0.9  0.5  0.4  0.2  0.5]
+ [ 0.1  0.8  0.4  0.9  0.3]
+ [ 0.7  0.5  1.   0.2  0.7]
+ [ 0.1  0.8  0.   0.6  0.5]
+ [ 1.   0.8  0.3  0.6  0.6]
+ [ 0.7  0.   0.2  0.9  0.9]
+ [ 0.1  0.9  0.5  0.4  0.5]
+ [ 0.2  0.8  0.1  0.3  0.7]
+ [ 0.8  0.8  0.1  0.3  0.2]
+ [ 0.9  0.9  0.1  0.7  0.6]]
+
+From 5-decimal precision file:
+[[ 0.93642  0.47368  0.3955   0.2296   0.50511]
+ [ 0.0956   0.75314  0.41235  0.85397  0.25805]
+ [ 0.71929  0.49028  0.98776  0.24145  0.6751 ]
+ [ 0.09679  0.80477  0.03396  0.57563  0.47235]
+ [ 0.97584  0.84054  0.31661  0.59561  0.56841]
+ [ 0.72131  0.04004  0.19583  0.85563  0.86161]
+ [ 0.09713  0.94744  0.46413  0.42341  0.46277]
+ [ 0.17422  0.83761  0.10492  0.33964  0.69536]
+ [ 0.81589  0.83133  0.08345  0.25504  0.17209]
+ [ 0.93444  0.86083  0.114    0.67958  0.55585]]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="How-do-I-load-comma-delimited-data-from-a-text-file-into-a-NumPy-array?">How do I load comma-delimited data from a text file into a NumPy array?<a class="anchor-link" href="#How-do-I-load-comma-delimited-data-from-a-text-file-into-a-NumPy-array?">&#182;</a></h2><p>The syntax is the same as for tab-delimited data, but you must add the flag <code>delimiter=','</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="n">dat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s1">&#39;precision5.txt&#39;</span><span class="p">,</span> <span class="n">dat</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%.5f</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+
+<span class="c1"># From 5-decimal precision file:</span>
+<span class="n">dat5</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="s1">&#39;precision5.txt&#39;</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;From 5-decimal precision file:&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dat5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>From 5-decimal precision file:
+[[ 0.13734  0.38584  0.62563  0.40165  0.07293]
+ [ 0.78286  0.7793   0.84418  0.19475  0.28821]
+ [ 0.56998  0.57984  0.0595   0.98685  0.34097]
+ [ 0.02003  0.8407   0.09316  0.83485  0.32105]
+ [ 0.9363   0.30436  0.62536  0.32022  0.97255]
+ [ 0.3708   0.56985  0.83221  0.63474  0.14423]
+ [ 0.96803  0.27683  0.80708  0.49152  0.22155]
+ [ 0.15709  0.27297  0.73944  0.6462   0.54357]
+ [ 0.55036  0.58456  0.65004  0.39913  0.87641]
+ [ 0.55787  0.98461  0.47396  0.15595  0.10621]]
+
 </pre>
 </div>
 </div>
