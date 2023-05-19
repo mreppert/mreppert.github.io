@@ -1,8 +1,8 @@
 cat head.html > index.html
 #sed -n 's/\(.*\)href="#\(.*\)?">\(.*\)/\2/p' MatPlotLib.html >> index.html
 
-INFILES=('MatPlotLib.html' 'NumPy.html' 'Spectroscopy.html')
-SUBJECTS=("Plots and Figures" "Matrices and Vectors" "Spectroscopy")
+INFILES=('MatPlotLib.html' 'NumPy.html' 'Signals.ipynb')
+SUBJECTS=("Plots and Figures" "Matrices and Vectors" "Spectroscopy and Signal Processing")
 for((n=0; n<${#INFILES[@]}; n++))
 do
 	infile=${INFILES[$n]}
