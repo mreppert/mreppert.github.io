@@ -141,7 +141,7 @@ for n in range(0, len(Years)):
         if Years[ndcs[n]] != lastyear:
             lastyear = Years[ndcs[n]]
             print()
-            print("<h2>" + str(lastyear) + "</h2>")
+            print("<h2 class=\"pubs\">" + str(lastyear) + "</h2>")
             print()
         print(RefList[ndcs[n]], "\n\n")
 
